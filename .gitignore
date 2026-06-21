@@ -1,3 +1,5 @@
+# Dragged Out — local live music calendar
+
 # Python
 __pycache__/
 *.pyc
@@ -6,8 +8,12 @@ __pycache__/
 # Data cache
 data/events.json
 
-# Generated output (old, now in docs/)
+# Generated output (now in docs/)
 site/
+
+# Deploy key — never commit this
+deploy_key
+deploy_key.pub
 
 # macOS
 .DS_Store

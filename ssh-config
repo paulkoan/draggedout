@@ -1,0 +1,8 @@
+# Dragged Out deploy key config — tells SSH to use deploy_key for GitHub
+# Generated: ssh-keygen -t ed25519 -C "deploy-key:dragged-out" -f deploy_key
+
+Host github.com-draggedout
+    HostName github.com
+    User git
+    IdentityFile /opt/data/dragged-out/deploy_key
+    IdentitiesOnly yes

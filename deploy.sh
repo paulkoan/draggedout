@@ -1,35 +1,31 @@
 #!/usr/bin/env bash
-# Deploy script for Dragged Out
-# Run: ./deploy.sh
-#
-# Sets up a venv if missing, scrapes sources, builds site, pushes to GitHub.
-# Requires GITHUB_TOKEN env var or configured git credential.
+# Dragged Out — weekly deploy script
+# Uses deploy_key for auth — public key must be on GitHub as deploy key (write)
 
 set -euo pipefail
 cd "$(dirname "$0")"
+PROJECT="Dragged Out"
+REPO="paulkoan/draggedout"
 
-echo "=== Dragged Out Deploy ==="
-echo ""
+echo "=== $PROJECT Deploy ==="
 
-# Setup venv if needed
+# ── Setup venv ──
 if [ ! -d .venv ]; then
-    echo "Creating venv..."
+    echo "[setup] Creating venv..."
     python3 -m venv .venv
     .venv/bin/pip install pyyaml
 fi
 
-# Scrape + Build
-echo "Building site..."
+# ── Scrape + Build ──
+echo "[build] Running generator..."
 .venv/bin/python generator.py
 
-# Git operations
-echo ""
-echo "Committing site..."
-git add -A
-git commit -m "deploy: site update $(date +%Y-%m-%d)" || echo "No changes to commit"
+# ── Git push via deploy key ──
+echo "[git] Staging, committing, pushing..."
+export GIT_SSH_COMMAND="ssh -F /dev/null -i deploy_key"
 
-# Push to GitHub
-echo "Pushing..."
-git push origin main || echo "WARN: push failed — check auth"
-echo ""
+git -C . add -A
+git -C . commit -m "deploy: site update $(date +%Y-%m-%d)" || echo "[git] No changes"
+git -C . push git@github.com:paulkoan/draggedout.git main
+
 echo "=== Done ==="
