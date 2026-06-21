@@ -21,8 +21,8 @@ from string import Template
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 
-# Output to docs/ for GitHub Pages
-SITE = ROOT / "docs"
+# Output to build/ for gh-pages deploy
+SITE = ROOT / "build"
 
 MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]

@@ -8,8 +8,9 @@ __pycache__/
 # Data cache
 data/events.json
 
-# Generated output (now in docs/)
+# Generated output (now in build/ for gh-pages)
 site/
+build/
 
 # Deploy key — never commit this
 deploy_key
