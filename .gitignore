@@ -1,0 +1,16 @@
+# Dragged Out generator
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Data cache
+data/events.json
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/

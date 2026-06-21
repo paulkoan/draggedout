@@ -1,0 +1,97 @@
+# Venues in the Windsor, Clewer, Eton, Old Windsor area
+# Add/remove as venues are discovered or stop hosting music
+# Each venue gets a slug used in URLs and data
+
+venues:
+
+  - name: "The Windsor Trooper"
+    slug: "trooper"
+    address: "97 St. Leonard's Road, Windsor SL4 3BZ"
+    area: "windsor"
+    postcode: "SL4 3BZ"
+    map_link: "https://maps.app.goo.gl/..."
+    phone: "01753 670122"
+    website: "https://www.thewindsortrooper.com"
+    whatson_page: "https://www.thewindsortrooper.com/whats-on"
+    twitter: "@TWTrooper"
+    sources:
+      lemonrock: "windsortrooper"
+    days: ["thursday", "friday", "saturday", "sunday"]
+
+  - name: "The Acre"
+    slug: "acre"
+    address: "Donnelly House, Victoria Street, Windsor SL4 1EN"
+    area: "windsor"
+    postcode: "SL4 1EN"
+    website: "https://www.theacrewindsor.com"
+    phone: "01753 841083"
+    sources:
+      lemonrock: "acrewindsor"
+    days: ["friday", "saturday", "sunday"]
+
+  - name: "The Old Ticket Hall"
+    slug: "old-ticket-hall"
+    address: "Datchet Road, Windsor SL4 1QL"
+    area: "windsor"
+    postcode: "SL4 1QL"
+    sources:
+      lemonrock: "oldtickethallwindsor"
+    days: ["thursday", "friday", "saturday", "sunday"]
+
+  - name: "The Swan, Clewer"
+    slug: "swan-clewer"
+    address: "9 Mill Lane, Clewer Village, Windsor SL4 5JG"
+    area: "clewer"
+    postcode: "SL4 5JG"
+    website: "https://theswanwindsor.co.uk"
+    events_page: "https://theswanwindsor.co.uk/events.html"
+    instagram: "theswanclewer"
+    phone: "01753 861797"
+    sources:
+      instagram: "theswanclewer"
+    days: ["thursday", "friday", "saturday", "sunday"]
+
+  - name: "The George, Eton"
+    slug: "george-eton"
+    address: "77 High Street, Eton SL4 6AF"
+    area: "eton"
+    postcode: "SL4 6AF"
+    website: "https://georgeinn-eton.co.uk"
+    phone: "01753 861797"
+    email: "thegeorge@webrew.co.uk"
+    instagram: "thegeorge_eton"
+    sources:
+      instagram: "thegeorge_eton"
+    days: ["thursday", "friday", "saturday", "sunday"]
+
+  - name: "Two Flints Brewery"
+    slug: "two-flints"
+    address: "25-26 The Arches, Windsor SL4 1QZ"
+    area: "windsor"
+    postcode: "SL4 1QZ"
+    website: "https://www.twoflintsbrewery.com"
+    instagram: "twoflintsbrewery"
+    twitter: "@two_flints"
+    sources:
+      instagram: "twoflintsbrewery"
+    days: ["saturday", "sunday"]
+
+  - name: "Unit 4 Taproom / WeBrew"
+    slug: "unit-4"
+    address: "1-4 Vansittart Estate, Duke Street, Windsor SL4 1SE"
+    area: "windsor"
+    postcode: "SL4 1SE"
+    website: "https://webrew.co.uk"
+    events_page: "https://webrew.co.uk/events/"
+    instagram: "windsoretonbrewery"
+    sources:
+      instagram: "windsoretonbrewery"
+    days: ["thursday", "friday", "saturday", "sunday"]
+
+  - name: "The Duke of Connaught"
+    slug: "duke-connaught"
+    address: "Windsor"
+    area: "windsor"
+    sources:
+      camra: true
+    days: ["sunday"]
