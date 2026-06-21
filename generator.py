@@ -36,34 +36,38 @@ def save_bands_cache(cache):
     DATA.mkdir(exist_ok=True)
     json.dump(cache, BANDS_FILE.open("w"), indent=2)
 
-def fetch_genre_from_gig(gig_url):
-    """Fetch a Lemonrock gig page and extract genre from the embedded JSON-LD.
+def fetch_band_info(gig_url):
+    """Fetch a Lemonrock gig page and extract genre + image from JSON-LD.
 
-    Each gig page has Schema.org JSON-LD with performer info including genre:
-      \"performer\": {\"@type\": \"PerformingGroup\", \"name\": \"Euphoria\", \"genre\": \"Indie Rock\"}
+    Each gig page has Schema.org JSON-LD with:
+      - performer[].genre (e.g. "Indie Rock")
+      - image (band/event photo URL)
     """
     try:
         resp = urllib.request.urlopen(gig_url, timeout=8)
         html = resp.read().decode("utf-8", errors="replace")
-        # Find JSON-LD script block
         m = re.search(r'<script type="application/ld\+json">\s*(.*?)\s*</script>', html, re.DOTALL)
         if not m:
-            return None
+            return None, None
         data = json.loads(m.group(1))
-        # performer can be a dict or a list
+        # Genre
+        genre = None
         performers = data.get("performer", [])
         if isinstance(performers, dict):
             performers = [performers]
         for p in performers:
-            genre = p.get("genre")
-            if genre:
-                return str(genre).strip()
-        return None
+            g = p.get("genre")
+            if g:
+                genre = str(g).strip()
+                break
+        # Image
+        image = data.get("image", "")
+        return genre, image
     except Exception:
-        return None
+        return None, None
 
 def enrich_events(events, bands_cache):
-    """Add genre and youtube to events, using cache when possible."""
+    """Add genre, youtube, image to events, using cache when possible."""
     n_fetched = 0
     for e in events:
         artist = e["artist"]
@@ -71,20 +75,22 @@ def enrich_events(events, bands_cache):
             info = bands_cache[artist]
             e["genre"] = info.get("genre")
             e["youtube"] = info.get("youtube")
+            e["image"] = info.get("image")
         elif e.get("url"):
-            print(f"  [band] fetching genre for '{artist}'...", file=sys.stderr)
-            genre = fetch_genre_from_gig(e["url"])
-            # Default YouTube: search link — can be overridden manually in bands.json
+            print(f"  [band] fetching info for '{artist}'...", file=sys.stderr)
+            genre, image = fetch_band_info(e["url"])
             yt_search = f"https://www.youtube.com/results?search_query={urllib.parse.quote(artist + ' band')}"
-            bands_cache[artist] = {"genre": genre, "youtube": yt_search}
+            bands_cache[artist] = {"genre": genre, "youtube": yt_search, "image": image}
             e["genre"] = genre
             e["youtube"] = yt_search
+            e["image"] = image
             n_fetched += 1
             import time
             time.sleep(0.5)
         else:
             e["genre"] = None
             e["youtube"] = None
+            e["image"] = None
     if n_fetched:
         print(f"  [band] fetched genres for {n_fetched} new artists", file=sys.stderr)
         save_bands_cache(bands_cache)
@@ -175,23 +181,16 @@ html{font-family:var(--font);font-size:16px;color:var(--fg);background:var(--bg)
 body{min-height:100vh;display:flex;flex-direction:column}
 
 /* ── Hero ── */
-.hero{position:relative;overflow:hidden;background:var(--hero-bg);min-height:320px;display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem}
-.hero-scene{position:absolute;inset:0;pointer-events:none}
-/* Pub ceiling/wall */
-.hero-scene::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 30%,#2a1a0e 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 30% 60%,#1a0e0a 0%,transparent 60%)}
-/* Warm light pools */
-.hero-light{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(184,134,11,.15) 0%,transparent 60%);width:300px;height:300px}
-.hero-light:nth-child(1){top:15%;left:20%}
-.hero-light:nth-child(2){top:10%;right:25%;width:250px;height:250px}
-.hero-light:nth-child(3){bottom:5%;left:40%;width:350px;height:350px}
-/* Band silhouettes — out of focus */
-.hero-band{position:absolute;bottom:10%;width:80px;height:180px;background:radial-gradient(ellipse 30px 80px at 50% 50%,#0a0503 0%,transparent 70%);filter:blur(8px);opacity:.6}
-.hero-band:nth-child(4){left:25%}
-.hero-band:nth-child(5){left:38%;width:60px;height:160px}
-.hero-band:nth-child(6){left:55%;width:70px;height:170px}
-/* Ambient haze */
-.hero-haze{position:absolute;inset:0;background:radial-gradient(ellipse 50% 30% at 50% 70%,rgba(88,166,255,.03) 0%,transparent 50%)}
-/* Content on top */
+.event-card .event-thumb{width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;border:1px solid var(--border)}
+.event-card .event-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.event-card .event-thumb:hover{border-color:var(--accent)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#0d0806 0%,#1a0e0a 30%,#2a1a0e 50%,#1a0e0a 70%,#0d0806 100%);min-height:260px;display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 35% at 50% 25%,rgba(180,130,30,.10) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 25% 70%,rgba(120,80,20,.06) 0%,transparent 50%),radial-gradient(ellipse 35% 25% at 75% 65%,rgba(100,60,15,.05) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(0deg,rgba(13,8,6,.3) 0%,transparent 100%);pointer-events:none}
+.hero-amber{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,40,.06) 0%,transparent 60%);pointer-events:none}
+.hero-amber:nth-child(1){top:5%;left:30%}
+.hero-amber:nth-child(2){bottom:15%;right:20%;width:300px;height:300px;background:radial-gradient(circle,rgba(180,130,30,.04) 0%,transparent 50%)}
+ /* Content on top */
 .hero-content{position:relative;z-index:1;text-align:center;max-width:650px}
 .hero-content h1{font-size:2.8rem;font-weight:800;letter-spacing:-.03em;color:#e6edf3;text-shadow:0 2px 20px rgba(0,0,0,.5);margin-bottom:.3rem}
 .hero-content .tagline{font-size:1rem;color:var(--muted);margin-bottom:2rem}
@@ -272,22 +271,14 @@ HEAD = Template("""<!DOCTYPE html>
 """)
 
 HERO = """<header class="hero">
-<div class="hero-scene">
-<div class="hero-light"></div>
-<div class="hero-light"></div>
-<div class="hero-light"></div>
-<div class="hero-band"></div>
-<div class="hero-band"></div>
-<div class="hero-band"></div>
-<div class="hero-haze"></div>
-</div>
+<div class="hero-amber"></div>
+<div class="hero-amber"></div>
 <div class="hero-content">
 <h1>Dragged Out</h1>
 <p class="tagline">Local live music &mdash; because you didn&rsquo;t want to go out but went anyway</p>
 <nav><a href="/">Calendar</a><a href="/about.html">About</a><a href="/venues/">Venues</a></nav>
 </div>
-</header>
-"""
+</header>"""
 
 FOOT = """<div class="wrapper">
 <footer class="footer">
@@ -319,11 +310,19 @@ def event_card(e):
                  else f"<span class='cost-other'>{e['cost']}</span>")
     cancelled = "<span class='cancelled'>✕ CANCELLED</span>" if e.get("cancelled") else ""
     genre_html = f"<div class='event-genre'>{e['genre']}</div>" if e.get("genre") else ""
-    youtube_html = ""
+    
+    # Thumbnail — clickable image linking to YouTube
+    thumb_html = ""
+    if e.get("image") and e.get("youtube"):
+        thumb_html = f"<a href='{e['youtube']}' target='_blank' rel='noopener' class='event-thumb'><img src='{e['image']}' alt='{e['artist']}' loading='lazy'></a>"
+    # Fallback text link when no image available
+    yt_link = ""
     if e.get("youtube"):
-        youtube_html = f"<a href='{e['youtube']}' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶ YouTube</a>"
+        yt_link = f"<a href='{e['youtube']}' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>"
+    
     return f"""<div class="event-card" itemscope itemtype="https://schema.org/Event">
 <script type="application/ld+json">{ld}</script>
+{thumb_html}
 <div class="event-time">{time_fmt}</div>
 <div class="event-body">
 <div class="event-artist">{e['artist']}{cancelled}</div>
@@ -332,7 +331,7 @@ def event_card(e):
 <div class="event-tags">
 <span class='event-venue-tag'>{e['venue']}</span>
 {cost_html}
-{youtube_html}
+{yt_link}
 </div>
 </div>"""
 
