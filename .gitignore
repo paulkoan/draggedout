@@ -1,5 +1,3 @@
-# Dragged Out generator
-
 # Python
 __pycache__/
 *.pyc
@@ -7,6 +5,9 @@ __pycache__/
 
 # Data cache
 data/events.json
+
+# Generated output (old, now in docs/)
+site/
 
 # macOS
 .DS_Store
