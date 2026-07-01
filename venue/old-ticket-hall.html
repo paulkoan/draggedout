@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Old Ticket Hall — Dragged Out</title>
+<meta name="description" content="Live music at The Old Ticket Hall in Windsor">
+<meta name="keywords" content="live music,Windsor,Eton,Clewer,pubs,breweries,gig guide">
+<meta property="og:title" content="The Old Ticket Hall — Dragged Out">
+<meta property="og:description" content="Live music at The Old Ticket Hall in Windsor">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://draggedout.cybr.fi/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Old Ticket Hall — Dragged Out">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Place", "name": "The Old Ticket Hall"}</script>
+<link rel="alternate" type="application/rss+xml" title="Dragged Out — Local Live Music" href="https://draggedout.cybr.fi/feed.xml">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d1117;--fg:#e6edf3;--card:#161b22;--card-hover:#1c2333;--border:#30363d;--accent:#58a6ff;--green:#3fb950;--amber:#d29922;--red:#f85149;--muted:#8b949e;--warm:#b8860b;--hero-bg:#1a0e0a;--font:'Segoe UI',Helvetica,Arial,sans-serif}
+html{font-family:var(--font);font-size:16px;color:var(--fg);background:var(--bg)}
+body{min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Hero ── */
+.event-card .event-thumb{width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;border:1px solid var(--border)}
+.event-card .event-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.event-card .event-thumb:hover{border-color:var(--accent)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#0d0806 0%,#1a0e0a 30%,#2a1a0e 50%,#1a0e0a 70%,#0d0806 100%);min-height:260px;display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 35% at 50% 25%,rgba(180,130,30,.10) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 25% 70%,rgba(120,80,20,.06) 0%,transparent 50%),radial-gradient(ellipse 35% 25% at 75% 65%,rgba(100,60,15,.05) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(0deg,rgba(13,8,6,.3) 0%,transparent 100%);pointer-events:none}
+.hero-amber{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,40,.06) 0%,transparent 60%);pointer-events:none}
+.hero-amber:nth-child(1){top:5%;left:30%}
+.hero-amber:nth-child(2){bottom:15%;right:20%;width:300px;height:300px;background:radial-gradient(circle,rgba(180,130,30,.04) 0%,transparent 50%)}
+ /* Content on top */
+.hero-content{position:relative;z-index:1;text-align:center;max-width:650px}
+.hero-content h1{font-size:2.8rem;font-weight:800;letter-spacing:-.03em;color:#e6edf3;text-shadow:0 2px 20px rgba(0,0,0,.5);margin-bottom:.3rem}
+.hero-content .tagline{font-size:1rem;color:var(--muted);margin-bottom:2rem}
+.hero-content p{font-size:.9rem;color:var(--muted);max-width:500px;margin:0 auto}
+
+/* ── Main content ── */
+.wrapper{max-width:900px;margin:0 auto;padding:1.5rem 1.5rem 0;width:100%;flex:1}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+a:hover{border-bottom-color:var(--accent)}
+nav{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-size:.95rem}
+nav a{color:var(--muted);border:0}
+nav a:hover{color:var(--fg);border:0}
+
+/* ── Day sections ── */
+.day-section{margin-bottom:2rem}
+.day-heading{font-size:1rem;font-weight:600;color:var(--accent);padding-bottom:.35rem;margin-bottom:.75rem;border-bottom:1px solid var(--border)}
+
+/* ── Event cards ── */
+.event-card{display:flex;align-items:center;gap:.65rem;padding:.6rem .85rem;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:.4rem;transition:background .1s,border-color .15s}
+.event-card:hover{background:var(--card-hover);border-color:var(--accent)}
+.event-time{font-size:.82rem;font-weight:600;min-width:3.5rem;text-align:center;padding:.2rem .4rem;background:rgba(255,255,255,.04);border-radius:4px;white-space:nowrap}
+.event-body{flex:1;display:flex;flex-direction:column}
+.event-artist{font-weight:500;font-size:.95rem}
+.event-genre{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+.event-tags{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.event-venue-tag{font-size:.78rem;color:var(--muted);padding:.12rem .4rem;background:rgba(88,166,255,.08);border-radius:4px;white-space:nowrap}
+.cost-free{color:var(--green);font-size:.78rem;font-weight:600;white-space:nowrap}
+.cost-other{color:var(--amber);font-size:.78rem;white-space:nowrap}
+.cancelled{color:var(--red);font-weight:600;margin-left:.4rem}
+
+/* ── Venue page ── */
+.venue-header{margin-bottom:2rem}
+.venue-header h2{font-size:1.5rem;margin-bottom:.25rem}
+.venue-meta{color:var(--muted);font-size:.85rem;line-height:1.6}
+.venue-meta a{font-size:.85rem}
+
+/* ── About ── */
+.about-section{line-height:1.7;max-width:65ch}
+.about-section h2{font-size:1.2rem;color:var(--accent);margin:1.5rem 0 .5rem}
+.about-section ul{list-style:none;padding:0}
+.about-section li{padding:.35rem 0;padding-left:1.2rem;position:relative}
+.about-section li::before{content:"→";position:absolute;left:0;color:var(--muted)}
+.about-section p{margin:.75rem 0}
+
+/* ── Footer ── */
+.footer{margin-top:2rem;padding:1.5rem 0;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+@media(max-width:600px){
+.hero{min-height:240px;padding:2rem 1rem}
+.hero-content h1{font-size:2rem}
+.wrapper{padding:1rem 1rem 0}
+.event-card{flex-wrap:wrap;gap:.4rem}
+.event-time{min-width:2.8rem}
+.event-body{flex:1 1 100%;order:-1}
+.event-tags{width:100%}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-amber"></div>
+<div class="hero-amber"></div>
+<div class="hero-content">
+<h1>Dragged Out</h1>
+<p class="tagline">Local live music &mdash; because you didn&rsquo;t want to go out but went anyway</p>
+<nav><a href="/">Calendar</a><a href="/about.html">About</a><a href="/venues/">Venues</a></nav>
+</div>
+</header><div class="wrapper"><main>
+<div class="venue-header">
+<h2>The Old Ticket Hall</h2>
+<p class="venue-meta">
+Datchet Road, Windsor SL4 1QL<br>
+Windsor &middot; 26 gigs listed
+</p>
+</div>
+<section class="day-section">
+<h2 class="day-heading">Thu 2 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-07-02", "endDate": "2026-07-02", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 3 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "AK-47 at The Old Ticket Hall", "startDate": "2026-07-03", "endDate": "2026-07-03", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "AK-47"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=AK-47%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/5188_300.webp' alt='AK-47' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">AK-47</div>
+<div class='event-genre'>Acoustic Covers</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=AK-47%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 4 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Cherry 13 at The Old Ticket Hall", "startDate": "2026-07-04", "endDate": "2026-07-04", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Cherry 13"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:00", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Cherry%2013%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/22808_300.webp' alt='Cherry 13' loading='lazy'></a>
+<div class="event-time">22:00</div>
+<div class="event-body">
+<div class="event-artist">Cherry 13</div>
+<div class='event-genre'>Rock & Pop Covers</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Cherry%2013%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 9 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-07-09", "endDate": "2026-07-09", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 16 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-07-16", "endDate": "2026-07-16", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 23 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-07-23", "endDate": "2026-07-23", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 24 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Scott Emery at The Old Ticket Hall", "startDate": "2026-07-24", "endDate": "2026-07-24", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Scott Emery"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "23:00"}</script>
+<a href='https://www.youtube.com/results?search_query=Scott%20Emery%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/22642_300.webp' alt='Scott Emery' loading='lazy'></a>
+<div class="event-time">23:00</div>
+<div class="event-body">
+<div class="event-artist">Scott Emery</div>
+<div class='event-genre'>Pop / Rock / Acoustic</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Scott%20Emery%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 25 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Project7 at The Old Ticket Hall", "startDate": "2026-07-25", "endDate": "2026-07-25", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Project7"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:45", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Project7%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/17163_300.webp' alt='Project7' loading='lazy'></a>
+<div class="event-time">22:45</div>
+<div class="event-body">
+<div class="event-artist">Project7</div>
+<div class='event-genre'>Covers 80s - present</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Project7%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 30 Jul 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-07-30", "endDate": "2026-07-30", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 6 Aug 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-08-06", "endDate": "2026-08-06", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 8 Aug 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "The Fab Cats at The Old Ticket Hall", "startDate": "2026-08-08", "endDate": "2026-08-08", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "The Fab Cats"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=The%20Fab%20Cats%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/26434_300.webp' alt='The Fab Cats' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">The Fab Cats</div>
+<div class='event-genre'>Covers 50s - present</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=The%20Fab%20Cats%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 13 Aug 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-08-13", "endDate": "2026-08-13", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 15 Aug 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Key Of Jay at The Old Ticket Hall", "startDate": "2026-08-15", "endDate": "2026-08-15", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Key Of Jay"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Key%20Of%20Jay%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxb/80559_300.webp?7' alt='Key Of Jay' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Key Of Jay</div>
+<div class='event-genre'>Covers - various</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Key%20Of%20Jay%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 20 Aug 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-08-20", "endDate": "2026-08-20", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 21 Aug 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Scott Emery at The Old Ticket Hall", "startDate": "2026-08-21", "endDate": "2026-08-21", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Scott Emery"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "23:00"}</script>
+<a href='https://www.youtube.com/results?search_query=Scott%20Emery%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/22642_300.webp' alt='Scott Emery' loading='lazy'></a>
+<div class="event-time">23:00</div>
+<div class="event-body">
+<div class="event-artist">Scott Emery</div>
+<div class='event-genre'>Pop / Rock / Acoustic</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Scott%20Emery%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 27 Aug 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kuran Dohil-Lynch at The Old Ticket Hall", "startDate": "2026-08-27", "endDate": "2026-08-27", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Kuran Dohil-Lynch"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Kuran Dohil-Lynch</div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Kuran%20Dohil-Lynch%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 11 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Key Of Jay at The Old Ticket Hall", "startDate": "2026-09-11", "endDate": "2026-09-11", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Key Of Jay"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Key%20Of%20Jay%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxb/80559_300.webp?7' alt='Key Of Jay' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Key Of Jay</div>
+<div class='event-genre'>Covers - various</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Key%20Of%20Jay%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 19 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Tequila Chase at The Old Ticket Hall", "startDate": "2026-09-19", "endDate": "2026-09-19", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Tequila Chase"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Tequila%20Chase%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/19091_300.webp' alt='Tequila Chase' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Tequila Chase</div>
+<div class='event-genre'>Rock Covers & Original</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Tequila%20Chase%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 26 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Nevermind at The Old Ticket Hall", "startDate": "2026-09-26", "endDate": "2026-09-26", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Nevermind"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Nevermind%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxb/92888_300.webp?1' alt='Nevermind' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Nevermind</div>
+<div class='event-genre'>Rock</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Nevermind%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 2 Oct 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "AK-47 at The Old Ticket Hall", "startDate": "2026-10-02", "endDate": "2026-10-02", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "AK-47"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=AK-47%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/5188_300.webp' alt='AK-47' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">AK-47</div>
+<div class='event-genre'>Acoustic Covers</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=AK-47%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 16 Oct 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "The Fab Cats at The Old Ticket Hall", "startDate": "2026-10-16", "endDate": "2026-10-16", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "The Fab Cats"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=The%20Fab%20Cats%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/26434_300.webp' alt='The Fab Cats' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">The Fab Cats</div>
+<div class='event-genre'>Covers 50s - present</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=The%20Fab%20Cats%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 20 Nov 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "The CosmicPixies at The Old Ticket Hall", "startDate": "2026-11-20", "endDate": "2026-11-20", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "The CosmicPixies"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "21:00", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=The%20CosmicPixies%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxb/75487_300.webp?3' alt='The CosmicPixies' loading='lazy'></a>
+<div class="event-time">21:00</div>
+<div class="event-body">
+<div class="event-artist">The CosmicPixies</div>
+<div class='event-genre'>Rock Covers</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=The%20CosmicPixies%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 21 Nov 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Nevermind at The Old Ticket Hall", "startDate": "2026-11-21", "endDate": "2026-11-21", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Nevermind"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Nevermind%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxb/92888_300.webp?1' alt='Nevermind' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">Nevermind</div>
+<div class='event-genre'>Rock</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Nevermind%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 4 Dec 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "AK-47 at The Old Ticket Hall", "startDate": "2026-12-04", "endDate": "2026-12-04", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "AK-47"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "22:30", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=AK-47%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/5188_300.webp' alt='AK-47' loading='lazy'></a>
+<div class="event-time">22:30</div>
+<div class="event-body">
+<div class="event-artist">AK-47</div>
+<div class='event-genre'>Acoustic Covers</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=AK-47%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 11 Dec 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Scott Emery at The Old Ticket Hall", "startDate": "2026-12-11", "endDate": "2026-12-11", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Scott Emery"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "23:00"}</script>
+<a href='https://www.youtube.com/results?search_query=Scott%20Emery%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxgp/22642_300.webp' alt='Scott Emery' loading='lazy'></a>
+<div class="event-time">23:00</div>
+<div class="event-body">
+<div class="event-artist">Scott Emery</div>
+<div class='event-genre'>Pop / Rock / Acoustic</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Scott%20Emery%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 18 Dec 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Betsy & the Vets at The Old Ticket Hall", "startDate": "2026-12-18", "endDate": "2026-12-18", "location": {"@type": "Place", "name": "The Old Ticket Hall", "address": ""}, "performer": {"@type": "Person", "name": "Betsy & the Vets"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "21:00", "isAccessibleForFree": true}</script>
+<a href='https://www.youtube.com/results?search_query=Betsy%20%26%20the%20Vets%20band' target='_blank' rel='noopener' class='event-thumb'><img src='https://static.lemonrock.com/gxb/101978_300.webp?6' alt='Betsy & the Vets' loading='lazy'></a>
+<div class="event-time">21:00</div>
+<div class="event-body">
+<div class="event-artist">Betsy & the Vets</div>
+<div class='event-genre'>Rock & Pop Covers</div>
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Ticket Hall</span>
+<span class='cost-free'>Free</span>
+<a href='https://www.youtube.com/results?search_query=Betsy%20%26%20the%20Vets%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section>
+</main><div class="wrapper">
+<footer class="footer">
+<span>Data from Lemonrock, venue websites &amp; Instagram. Updated weekly.</span>
+<span><a href="https://github.com/paulkoan/dragged-out">GitHub</a></span>
+</footer></div></body></html>

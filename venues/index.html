@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Venues — Dragged Out</title>
+<meta name="description" content="8 venues with live music in Windsor, Clewer, and Eton.">
+<meta name="keywords" content="live music,Windsor,Eton,Clewer,pubs,breweries,gig guide">
+<meta property="og:title" content="Venues — Dragged Out">
+<meta property="og:description" content="8 venues with live music in Windsor, Clewer, and Eton.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://draggedout.cybr.fi/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Venues — Dragged Out">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Venues"}</script>
+<link rel="alternate" type="application/rss+xml" title="Dragged Out — Local Live Music" href="https://draggedout.cybr.fi/feed.xml">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d1117;--fg:#e6edf3;--card:#161b22;--card-hover:#1c2333;--border:#30363d;--accent:#58a6ff;--green:#3fb950;--amber:#d29922;--red:#f85149;--muted:#8b949e;--warm:#b8860b;--hero-bg:#1a0e0a;--font:'Segoe UI',Helvetica,Arial,sans-serif}
+html{font-family:var(--font);font-size:16px;color:var(--fg);background:var(--bg)}
+body{min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Hero ── */
+.event-card .event-thumb{width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;border:1px solid var(--border)}
+.event-card .event-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.event-card .event-thumb:hover{border-color:var(--accent)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#0d0806 0%,#1a0e0a 30%,#2a1a0e 50%,#1a0e0a 70%,#0d0806 100%);min-height:260px;display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 35% at 50% 25%,rgba(180,130,30,.10) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 25% 70%,rgba(120,80,20,.06) 0%,transparent 50%),radial-gradient(ellipse 35% 25% at 75% 65%,rgba(100,60,15,.05) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(0deg,rgba(13,8,6,.3) 0%,transparent 100%);pointer-events:none}
+.hero-amber{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,40,.06) 0%,transparent 60%);pointer-events:none}
+.hero-amber:nth-child(1){top:5%;left:30%}
+.hero-amber:nth-child(2){bottom:15%;right:20%;width:300px;height:300px;background:radial-gradient(circle,rgba(180,130,30,.04) 0%,transparent 50%)}
+ /* Content on top */
+.hero-content{position:relative;z-index:1;text-align:center;max-width:650px}
+.hero-content h1{font-size:2.8rem;font-weight:800;letter-spacing:-.03em;color:#e6edf3;text-shadow:0 2px 20px rgba(0,0,0,.5);margin-bottom:.3rem}
+.hero-content .tagline{font-size:1rem;color:var(--muted);margin-bottom:2rem}
+.hero-content p{font-size:.9rem;color:var(--muted);max-width:500px;margin:0 auto}
+
+/* ── Main content ── */
+.wrapper{max-width:900px;margin:0 auto;padding:1.5rem 1.5rem 0;width:100%;flex:1}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+a:hover{border-bottom-color:var(--accent)}
+nav{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-size:.95rem}
+nav a{color:var(--muted);border:0}
+nav a:hover{color:var(--fg);border:0}
+
+/* ── Day sections ── */
+.day-section{margin-bottom:2rem}
+.day-heading{font-size:1rem;font-weight:600;color:var(--accent);padding-bottom:.35rem;margin-bottom:.75rem;border-bottom:1px solid var(--border)}
+
+/* ── Event cards ── */
+.event-card{display:flex;align-items:center;gap:.65rem;padding:.6rem .85rem;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:.4rem;transition:background .1s,border-color .15s}
+.event-card:hover{background:var(--card-hover);border-color:var(--accent)}
+.event-time{font-size:.82rem;font-weight:600;min-width:3.5rem;text-align:center;padding:.2rem .4rem;background:rgba(255,255,255,.04);border-radius:4px;white-space:nowrap}
+.event-body{flex:1;display:flex;flex-direction:column}
+.event-artist{font-weight:500;font-size:.95rem}
+.event-genre{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+.event-tags{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.event-venue-tag{font-size:.78rem;color:var(--muted);padding:.12rem .4rem;background:rgba(88,166,255,.08);border-radius:4px;white-space:nowrap}
+.cost-free{color:var(--green);font-size:.78rem;font-weight:600;white-space:nowrap}
+.cost-other{color:var(--amber);font-size:.78rem;white-space:nowrap}
+.cancelled{color:var(--red);font-weight:600;margin-left:.4rem}
+
+/* ── Venue page ── */
+.venue-header{margin-bottom:2rem}
+.venue-header h2{font-size:1.5rem;margin-bottom:.25rem}
+.venue-meta{color:var(--muted);font-size:.85rem;line-height:1.6}
+.venue-meta a{font-size:.85rem}
+
+/* ── About ── */
+.about-section{line-height:1.7;max-width:65ch}
+.about-section h2{font-size:1.2rem;color:var(--accent);margin:1.5rem 0 .5rem}
+.about-section ul{list-style:none;padding:0}
+.about-section li{padding:.35rem 0;padding-left:1.2rem;position:relative}
+.about-section li::before{content:"→";position:absolute;left:0;color:var(--muted)}
+.about-section p{margin:.75rem 0}
+
+/* ── Footer ── */
+.footer{margin-top:2rem;padding:1.5rem 0;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+@media(max-width:600px){
+.hero{min-height:240px;padding:2rem 1rem}
+.hero-content h1{font-size:2rem}
+.wrapper{padding:1rem 1rem 0}
+.event-card{flex-wrap:wrap;gap:.4rem}
+.event-time{min-width:2.8rem}
+.event-body{flex:1 1 100%;order:-1}
+.event-tags{width:100%}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-amber"></div>
+<div class="hero-amber"></div>
+<div class="hero-content">
+<h1>Dragged Out</h1>
+<p class="tagline">Local live music &mdash; because you didn&rsquo;t want to go out but went anyway</p>
+<nav><a href="/">Calendar</a><a href="/about.html">About</a><a href="/venues/">Venues</a></nav>
+</div>
+</header><div class="wrapper"><main>
+<h2 style='margin-bottom:1rem;font-size:1.2rem'>Venues</h2>
+<p style='color:var(--muted);margin-bottom:1rem'>Pubs and breweries in the area with live music.</p>
+<div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/trooper.html">The Windsor Trooper</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Windsor</span>
+<span style='font-size:.8rem;color:var(--muted)'>11 gigs</span>
+</div><div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/acre.html">The Acre</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Windsor</span>
+<span style='font-size:.8rem;color:var(--muted)'>65 gigs</span>
+</div><div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/old-ticket-hall.html">The Old Ticket Hall</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Windsor</span>
+<span style='font-size:.8rem;color:var(--muted)'>26 gigs</span>
+</div><div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/swan-clewer.html">The Swan, Clewer</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Clewer</span>
+<span style='font-size:.8rem;color:var(--muted)'>0 gigs</span>
+</div><div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/george-eton.html">The George, Eton</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Eton</span>
+<span style='font-size:.8rem;color:var(--muted)'>0 gigs</span>
+</div><div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/two-flints.html">Two Flints Brewery</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Windsor</span>
+<span style='font-size:.8rem;color:var(--muted)'>0 gigs</span>
+</div><div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/unit-4.html">Unit 4 Taproom / WeBrew</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Windsor</span>
+<span style='font-size:.8rem;color:var(--muted)'>0 gigs</span>
+</div><div class="event-card">
+<div class="event-body"><div class="event-artist"><a href="/venue/duke-connaught.html">The Duke of Connaught</a></div></div>
+<span style='font-size:.8rem;color:var(--muted)'>Windsor</span>
+<span style='font-size:.8rem;color:var(--muted)'>0 gigs</span>
+</div>
+</main><div class="wrapper">
+<footer class="footer">
+<span>Data from Lemonrock, venue websites &amp; Instagram. Updated weekly.</span>
+<span><a href="https://github.com/paulkoan/dragged-out">GitHub</a></span>
+</footer></div></body></html>
