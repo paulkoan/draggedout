@@ -49,6 +49,8 @@ venues:
     phone: "01753 861797"
     sources:
       instagram: "theswanclewer"
+      lemonrock: "swanwindsor"
+      web: "https://theswanwindsor.co.uk/events.html"
     days: ["thursday", "friday", "saturday", "sunday"]
 
   - name: "The George, Eton"
@@ -62,6 +64,8 @@ venues:
     instagram: "thegeorge_eton"
     sources:
       instagram: "thegeorge_eton"
+      lemonrock: "georgeeton"
+      web: "https://webrew.co.uk/events/"
     days: ["thursday", "friday", "saturday", "sunday"]
 
   - name: "Two Flints Brewery"
@@ -70,10 +74,12 @@ venues:
     area: "windsor"
     postcode: "SL4 1QZ"
     website: "https://www.twoflintsbrewery.com"
+    events_page: "https://berkshireartistree.co.uk/venue/two-flints-brewery-windsor/"
     instagram: "twoflintsbrewery"
     twitter: "@two_flints"
     sources:
       instagram: "twoflintsbrewery"
+      web: "https://berkshireartistree.co.uk/venue/two-flints-brewery-windsor/"
     days: ["saturday", "sunday"]
 
   - name: "Unit 4 Taproom / WeBrew"
@@ -86,12 +92,93 @@ venues:
     instagram: "windsoretonbrewery"
     sources:
       instagram: "windsoretonbrewery"
+      lemonrock: "unit4brewerytapwindsor"
+      web: "https://webrew.co.uk/events/"
     days: ["thursday", "friday", "saturday", "sunday"]
 
   - name: "The Duke of Connaught"
     slug: "duke-connaught"
-    address: "Windsor"
+    address: "165 Arthur Road, Windsor SL4 1RZ"
     area: "windsor"
+    postcode: "SL4 1RZ"
+    website: "https://www.thedukeofconnaught.com"
+    whatson_page: "https://www.thedukeofconnaught.com/live-music"
+    phone: "01753 840748"
+    instagram: "thedukeofconnaught"
     sources:
-      camra: true
+      web: "https://www.thedukeofconnaught.com/live-music"
+    days: ["sunday"]
+
+  # ── New venues added July 2026 ──
+
+  - name: "Other Space Arts"
+    slug: "other-space-arts"
+    address: "Kardelton House, Vansittart Estate, Windsor SL4 1SE"
+    area: "windsor"
+    postcode: "SL4 1SE"
+    website: "https://www.otherspacearts.com"
+    phone: "01753 905014"
+    email: "info@otherspacearts.com"
+    instagram: "otherspacearts"
+    whatson_page: "https://www.otherspacearts.com/up-coming-what-s-on"
+    notes: >
+      Grassroots live music venue & plant-based café bar.
+      Regular open mic (The Platform), Music & Words Club, DIY Metal & Punk.
+      No wheelchair access.
+    sources:
+      instagram: "otherspacearts"
+      web: "https://www.otherspacearts.com/up-coming-what-s-on"
+    days: ["thursday", "friday", "saturday", "sunday"]
+
+  - name: "The Old Court"
+    slug: "old-court"
+    address: "St Leonard's Road, Windsor SL4 3BL"
+    area: "windsor"
+    postcode: "SL4 3BL"
+    website: "https://oldcourt.org.uk"
+    whatson_page: "https://oldcourt.org.uk/events/music/"
+    phone: "01753 911333"
+    email: "info@oldcourt.org.uk"
+    instagram: "oldcourtwin"
+    notes: >
+      Arts centre with live music, comedy, film & theatre.
+      Bar run by Windsor & Eton Brewery.
+      Hosts Blues Brothers Night, Soul Stew, and regular gigs.
+      Ticketed events via oldcourt.org.uk.
+    sources:
+      web: "https://oldcourt.org.uk/events/music/"
+    days: ["thursday", "friday", "saturday", "sunday"]
+
+  - name: "The Fox & Castle"
+    slug: "fox-castle"
+    address: "21 Burfield Road, Old Windsor SL4 2RB"
+    area: "old-windsor"
+    postcode: "SL4 2RB"
+    website: "https://www.thefoxandcastleoldwindsor.com"
+    phone: "01753 267071"
+    email: "foxandcastleoldwindsor@yahoo.com"
+    instagram: "thefoxandcastle"
+    notes: >
+      16th-century pub with Open Mic Nights (Thursdays, comedy & live music).
+      Also hosts live music for events. Part of an independent pub group.
+    sources:
+      instagram: "thefoxandcastle"
+    days: ["thursday"]
+
+  - name: "The Horse & Groom"
+    slug: "horse-groom"
+    address: "4 Castle Hill, Windsor SL4 1PD"
+    area: "windsor"
+    postcode: "SL4 1PD"
+    website: "https://www.horseandgroomwindsor.com"
+    phone: "01753 830172"
+    notes: >
+      18th-century pub right outside Windsor Castle gates.
+      Sunday Afternoon Song Circle confirmed defunct since 2017 (parent task t_c9449876).
+      Instagram is not a viable data source — only 2 music posts in 2 years.
+      Venue currently has no regular live music programme.
+      Part of the same independent group as the Fox & Castle.
+      Scraper module at scrapers/horse_groom.py always returns empty — no events to scrape.
+    sources:
+      web: "https://www.horseandgroomwindsor.com"
     days: ["sunday"]
