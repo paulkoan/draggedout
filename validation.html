@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instagram Events — Validation</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d1117;--fg:#e6edf3;--card:#161b22;--card-hover:#1c2333;--border:#30363d;--accent:#58a6ff;--green:#3fb950;--amber:#d29922;--red:#f85149;--muted:#8b949e;--font:'Segoe UI',Helvetica,Arial,sans-serif}
+html{font-family:var(--font);font-size:16px;color:var(--fg);background:var(--bg)}
+body{min-height:100vh;display:flex;flex-direction:column}
+.wrapper{max-width:900px;margin:0 auto;padding:1.5rem;width:100%;flex:1}
+a{color:var(--accent);text-decoration:none}
+nav{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-size:.95rem}
+nav a{color:var(--muted)}
+nav a:hover{color:var(--fg)}
+h1{font-size:1.8rem;margin-bottom:.25rem}
+.subtitle{color:var(--muted);margin-bottom:1.5rem;font-size:.9rem}
+.day-section{margin-bottom:2rem}
+.day-heading{font-size:1rem;font-weight:600;color:var(--accent);padding-bottom:.35rem;margin-bottom:.75rem;border-bottom:1px solid var(--border)}
+.event-card{display:flex;align-items:center;gap:.65rem;padding:.6rem .85rem;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:.4rem;transition:background .1s}
+.event-card:hover{background:var(--card-hover);border-color:var(--accent)}
+.event-time{font-size:.82rem;font-weight:600;min-width:3.5rem;text-align:center;padding:.2rem .4rem;background:rgba(255,255,255,.04);border-radius:4px;white-space:nowrap}
+.event-body{flex:1;display:flex;flex-direction:column}
+.event-artist{font-weight:500;font-size:.95rem}
+.event-source{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+.event-tags{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.event-venue-tag{font-size:.78rem;color:var(--muted);padding:.12rem .4rem;background:rgba(88,166,255,.08);border-radius:4px;white-space:nowrap}
+.event-label{font-size:.75rem;padding:.1rem .35rem;border-radius:4px;white-space:nowrap}
+.label-music{background:rgba(63,185,80,.12);color:var(--green)}
+.label-other{background:rgba(210,153,34,.12);color:var(--amber)}
+.footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.stats{display:flex;gap:2rem;margin-bottom:1rem;flex-wrap:wrap}
+.stat-box{padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;text-align:center;min-width:120px}
+.stat-num{font-size:1.5rem;font-weight:700}
+.stat-label{font-size:.75rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<h1>Instagram → Events</h1>
+<p class="subtitle">Source: <code>/opt/data/kanban/boards/draggedout/workspaces/t_52ca0c46/fox_castle_instagram.json</code> &middot; Generated 2026-07-09 18:21</p>
+
+<div class="stats">
+<div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Events Found</div></div>
+<div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Music Events</div></div>
+<div class="stat-box"><div class="stat-num">0</div><div class="stat-label">Other Events</div></div>
+<div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Venues</div></div>
+</div>
+
+<p style="color:var(--muted);margin-bottom:1rem">
+Event filtering uses keyword matching on captions. Music events include keywords like
+"live music", "open mic", "band", "gig", etc. Other events cover quizzes, BBQs, sports, and charity.
+</p>
+
+<section class="day-section">
+<h2 class="day-heading">Mon 27 Jul 2026</h2>
+<div class="event-card">
+<span class='event-time'>14:00</span>
+<div class="event-body">
+<div class="event-artist">SWAN SUPPORT CHARITY BBQ 🦢</div>
+<div class="event-source">instagram:fox-castle · <a href="https://www.instagram.com/thefoxandcastle/p/C9DYa0yoq8Y/">View post</a></div>
+</div>
+<div class="event-tags">
+<span class="event-venue-tag">The Fox & Castle</span>
+<span class="event-label label-music">🎵 Music</span>
+</div>
+</div>
+</section>
+<section class="day-section">
+<h2 class="day-heading">Fri 31 Jul 2026</h2>
+<div class="event-card">
+<span class='event-time'>20:00</span>
+<div class="event-body">
+<div class="event-artist">the incredible Flick</div>
+<div class="event-source">instagram:fox-castle · <a href="https://www.instagram.com/thefoxandcastle/p/DMsG3Q1Ihhg/">View post</a></div>
+</div>
+<div class="event-tags">
+<span class="event-venue-tag">The Fox & Castle</span>
+<span class="event-label label-music">🎵 Music</span>
+</div>
+</div>
+</section>
+<section class="day-section">
+<h2 class="day-heading">Fri 18 Sep 2026</h2>
+<div class="event-card">
+<span class='event-time'>20:00</span>
+<div class="event-body">
+<div class="event-artist">the brilliant Flick</div>
+<div class="event-source">instagram:fox-castle · <a href="https://www.instagram.com/thefoxandcastle/p/DOGoZtljMRT/">View post</a></div>
+</div>
+<div class="event-tags">
+<span class="event-venue-tag">The Fox & Castle</span>
+<span class="event-label label-music">🎵 Music</span>
+</div>
+</div>
+</section>
+<section class="day-section">
+<h2 class="day-heading">Wed 17 Mar 2027</h2>
+<div class="event-card">
+<span class='event-time'>19:30</span>
+<div class="event-body">
+<div class="event-artist">Marcy Dawson and Sean O’Keating</div>
+<div class="event-source">instagram:fox-castle · <a href="https://www.instagram.com/thefoxandcastle/p/C4eBE_tLLNL/">View post</a></div>
+</div>
+<div class="event-tags">
+<span class="event-venue-tag">The Fox & Castle</span>
+<span class="event-label label-music">🎵 Music</span>
+</div>
+</div>
+</section>
+
+<div class="footer">
+<p>Dragged Out — Instagram event transformation · Validation output</p>
+</div>
+</div>
+</body>
+</html>

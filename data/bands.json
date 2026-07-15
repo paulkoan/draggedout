@@ -278,5 +278,520 @@
     "genre": "New Wave / Punk",
     "youtube": "https://www.youtube.com/results?search_query=Straw%20Dogs%20band",
     "image": "https://static.lemonrock.com/gxgp/28190_300.webp"
+  },
+  "Steve Carroll": {
+    "genre": "Pop / Rock / Acoustic",
+    "youtube": "https://www.youtube.com/results?search_query=Steve%20Carroll%20band",
+    "image": "https://static.lemonrock.com/gxb/94566_300.webp?1"
+  },
+  "Jah Herbert": {
+    "genre": "Reggae",
+    "youtube": "https://www.youtube.com/results?search_query=Jah%20Herbert%20band",
+    "image": "https://static.lemonrock.com/gxb/108769_300.webp?1"
+  },
+  "Supernova": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Supernova%20band",
+    "image": null
+  },
+  "The Gentleman Of Ska \u2018n\u2019 B": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Gentleman%20Of%20Ska%20%E2%80%98n%E2%80%99%20B%20band",
+    "image": null
+  },
+  "The Choice Is Yours": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Choice%20Is%20Yours%20band",
+    "image": null
+  },
+  "The Skin & Blister Sisters": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Skin%20%26%20Blister%20Sisters%20band",
+    "image": null
+  },
+  "Nicole Allan": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Nicole%20Allan%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "Josh Roberts": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Josh%20Roberts%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "Tom Martin": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Tom%20Martin%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "One Eyed Man": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=One%20Eyed%20Man%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "Siobhan & Omari": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Siobhan%20%26%20Omari%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "Kuran & Ian": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Kuran%20%26%20Ian%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "James Lainey": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=James%20Lainey%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "Abi Powell": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Abi%20Powell%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "Aaron  Norton": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Aaron%20%20Norton%20band",
+    "image": "//images.squarespace-cdn.com/content/v1/5ff9ec436296c62df8759544/1610217970376-2Y78XP876T3VHTDDK2V4/25F9DBF3-5E9A-4F1D-9C5D-F9FA99343311.png"
+  },
+  "KURANSINGS LIVE AT THE GEORGE": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=KURANSINGS%20LIVE%20AT%20THE%20GEORGE%20band",
+    "image": null
+  },
+  "Open Mic Night with Aaron Norton": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Open%20Mic%20Night%20with%20Aaron%20Norton%20band",
+    "image": null
+  },
+  "WINDSOR BEER FESTIVAL 2026 DAY 1: THE OPENER": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=WINDSOR%20BEER%20FESTIVAL%202026%20DAY%201%3A%20THE%20OPENER%20band",
+    "image": null
+  },
+  "WINDSOR BEER FESTIVAL 2026 DAY 2: GAMES DAY": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=WINDSOR%20BEER%20FESTIVAL%202026%20DAY%202%3A%20GAMES%20DAY%20band",
+    "image": null
+  },
+  "WINDSOR BEER FESTIVAL 2026 DAY 3: FAMILY DAY": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=WINDSOR%20BEER%20FESTIVAL%202026%20DAY%203%3A%20FAMILY%20DAY%20band",
+    "image": null
+  },
+  "England Are Through\u2026 Next Stop: Norway!": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=England%20Are%20Through%E2%80%A6%20Next%20Stop%3A%20Norway%21%20band",
+    "image": null
+  },
+  "Bingo Night": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Bingo%20Night%20band",
+    "image": null
+  },
+  "Christmas in July": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Christmas%20in%20July%20band",
+    "image": null
+  },
+  "Community Day \u2013 and our 7th birthday!": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Community%20Day%20%E2%80%93%20and%20our%207th%20birthday%21%20band",
+    "image": null
+  },
+  "Quiz evening \u2013 open to all!": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Quiz%20evening%20%E2%80%93%20open%20to%20all%21%20band",
+    "image": null
+  },
+  "Swanfest \u2013 Family Fun, Live music and Beer Fest 14th \u2013 16th August": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Swanfest%20%E2%80%93%20Family%20Fun%2C%20Live%20music%20and%20Beer%20Fest%2014th%20%E2%80%93%2016th%20August%20band",
+    "image": null
+  },
+  "Music & Words Club": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Music%20%26%20Words%20Club%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_9304ccd50d804dbd945c4f047cdc7d5e~mv2.jpg/v1/fill/w_1638,h_921,al_c,q_85/d1a436_9304ccd50d804dbd945c4f047cdc7d5e~mv2.jpg",
+      "width": "1638",
+      "height": "921"
+    }
+  },
+  "Yr 3 and 4 show": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Yr%203%20and%204%20show%20band",
+    "image": null
+  },
+  "Quiz Night with Dickie Jones": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Quiz%20Night%20with%20Dickie%20Jones%20band",
+    "image": null
+  },
+  "Bump to Tots Breakfast Club": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Bump%20to%20Tots%20Breakfast%20Club%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_22b0029a63f24989aa48843ccf851134~mv2.png/v1/fill/w_2400,h_1350,al_c/d1a436_22b0029a63f24989aa48843ccf851134~mv2.png",
+      "width": "2400",
+      "height": "1350"
+    }
+  },
+  "Blues Brothers Night": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Blues%20Brothers%20Night%20band",
+    "image": null
+  },
+  "FRANSSENS & FRIENDS": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=FRANSSENS%20%26%20FRIENDS%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_300d7aebe42543daa2eda52a9dd70396~mv2.png/v1/fill/w_800,h_424,al_c/d1a436_300d7aebe42543daa2eda52a9dd70396~mv2.png",
+      "width": "800",
+      "height": "424"
+    }
+  },
+  "Soul Surgery with Ian Cunningham": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Soul%20Surgery%20with%20Ian%20Cunningham%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_e74626836e274281a7caea79d43b6c54~mv2.jpg/v1/fill/w_1080,h_607,al_c,q_85/d1a436_e74626836e274281a7caea79d43b6c54~mv2.jpg",
+      "width": "1080",
+      "height": "607"
+    }
+  },
+  "The Platform Open Mic": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Platform%20Open%20Mic%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_d0db00495053492893fd6bc65887f793~mv2.jpg/v1/fill/w_2400,h_1350,al_c,q_90/d1a436_d0db00495053492893fd6bc65887f793~mv2.jpg",
+      "width": "2400",
+      "height": "1350"
+    }
+  },
+  "Soul Stew": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Soul%20Stew%20band",
+    "image": null
+  },
+  "Party Dance Class": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Party%20Dance%20Class%20band",
+    "image": null
+  },
+  "Old Courters Banshees of Inisherin": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Old%20Courters%20Banshees%20of%20Inisherin%20band",
+    "image": null
+  },
+  "Daren Mason - Wildlife Painting": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Daren%20Mason%20-%20Wildlife%20Painting%20band",
+    "image": null
+  },
+  "Open Mic with Omari": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Open%20Mic%20with%20Omari%20band",
+    "image": null
+  },
+  "Co-working Thursdays": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Co-working%20Thursdays%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_16f6f09a0c6242f598a34169b4ddfa75~mv2.jpg/v1/fill/w_1620,h_911,al_c,q_85/d1a436_16f6f09a0c6242f598a34169b4ddfa75~mv2.jpg",
+      "width": "1620",
+      "height": "911"
+    }
+  },
+  "Windsor - Small99's People, Planet, Pint\u2122: Sustainability Meetup": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Windsor%20-%20Small99%27s%20People%2C%20Planet%2C%20Pint%E2%84%A2%3A%20Sustainability%20Meetup%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_c1761705dbd442018afacb14e65486c8~mv2.jpg/v1/fill/w_2835,h_3544,al_c,q_90/d1a436_c1761705dbd442018afacb14e65486c8~mv2.jpg",
+      "width": "2835",
+      "height": "3544"
+    }
+  },
+  "Night of the Guitar \u2013 Tom Gamble, Martin Wood & Simon Bowers": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Night%20of%20the%20Guitar%20%E2%80%93%20Tom%20Gamble%2C%20Martin%20Wood%20%26%20Simon%20Bowers%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_2abfd08de8ff4d10b4aeb4f76ef42213~mv2.jpeg/v1/fill/w_2500,h_1407,al_c,q_90/d1a436_2abfd08de8ff4d10b4aeb4f76ef42213~mv2.jpeg",
+      "width": "2500",
+      "height": "1407"
+    }
+  },
+  "The Wears Prada 2": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Wears%20Prada%202%20band",
+    "image": null
+  },
+  "Bollywood Day Party": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Bollywood%20Day%20Party%20band",
+    "image": null
+  },
+  "Sunday Reset: Gong Bath with Linda Ciardiello": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Sunday%20Reset%3A%20Gong%20Bath%20with%20Linda%20Ciardiello%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_ec2d91ff974148c39c0ba9a1bea6113e~mv2.jpg/v1/fill/w_1080,h_607,al_c,q_85/d1a436_ec2d91ff974148c39c0ba9a1bea6113e~mv2.jpg",
+      "width": "1080",
+      "height": "607"
+    }
+  },
+  "Devil Wears Prada 2": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Devil%20Wears%20Prada%202%20band",
+    "image": null
+  },
+  "The Windsor Community Poppy Project": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Windsor%20Community%20Poppy%20Project%20band",
+    "image": null
+  },
+  "The Old Court Quiz Night": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Old%20Court%20Quiz%20Night%20band",
+    "image": null
+  },
+  "Omari  live": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Omari%20%20live%20band",
+    "image": null
+  },
+  "Black Herron Promotions Presents: DIY Metal & Punk": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Black%20Herron%20Promotions%20Presents%3A%20DIY%20Metal%20%26%20Punk%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_f0a6f8fb5d4a4c0da31554c6ad1085f8~mv2.jpg/v1/fill/w_1500,h_844,al_c,q_85/d1a436_f0a6f8fb5d4a4c0da31554c6ad1085f8~mv2.jpg",
+      "width": "1500",
+      "height": "844"
+    }
+  },
+  "Official Pride After Party - Karaoke, Cocktails & Pride Anthems": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Official%20Pride%20After%20Party%20-%20Karaoke%2C%20Cocktails%20%26%20Pride%20Anthems%20band",
+    "image": null
+  },
+  "Sunday Reset: 9D Breathwork with Andreea": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Sunday%20Reset%3A%209D%20Breathwork%20with%20Andreea%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_c6bbf6a8738048aa9b75799048bc7142~mv2.jpg/v1/fill/w_2400,h_1350,al_c,q_90/d1a436_c6bbf6a8738048aa9b75799048bc7142~mv2.jpg",
+      "width": "2400",
+      "height": "1350"
+    }
+  },
+  "Open Deck (Bring Your Own Vinyl)": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Open%20Deck%20%28Bring%20Your%20Own%20Vinyl%29%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_95c6d8080381466ea21f10bd28dd322e~mv2.jpg/v1/fill/w_1080,h_607,al_c,q_85/d1a436_95c6d8080381466ea21f10bd28dd322e~mv2.jpg",
+      "width": "1080",
+      "height": "607"
+    }
+  },
+  "Swingland": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Swingland%20band",
+    "image": null
+  },
+  "Variety Night": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Variety%20Night%20band",
+    "image": null
+  },
+  "Bar Beats: DJ Little Kate": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Bar%20Beats%3A%20DJ%20Little%20Kate%20band",
+    "image": null
+  },
+  "Sound Bath Healing": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Sound%20Bath%20Healing%20band",
+    "image": null
+  },
+  "Thomas Allen live in the bar": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Thomas%20Allen%20live%20in%20the%20bar%20band",
+    "image": null
+  },
+  "Oasiz": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Oasiz%20band",
+    "image": null
+  },
+  "Jazz Sabbath 2026": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Jazz%20Sabbath%202026%20band",
+    "image": null
+  },
+  "Alice In Wonderland ballet": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Alice%20In%20Wonderland%20ballet%20band",
+    "image": null
+  },
+  "MoonAge - Bowie Tribute": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=MoonAge%20-%20Bowie%20Tribute%20band",
+    "image": null
+  },
+  "Rocky Horror Night": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Rocky%20Horror%20Night%20band",
+    "image": null
+  },
+  "A Christmas Wish": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=A%20Christmas%20Wish%20band",
+    "image": null
+  },
+  "The Nutcracker": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=The%20Nutcracker%20band",
+    "image": null
+  },
+  "Georgia Acoustic": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Georgia%20Acoustic%20band",
+    "image": null
+  },
+  "Shaun Twomey": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Shaun%20Twomey%20band",
+    "image": null
+  },
+  "\ud83c\udff4 England vs Norway \u26bd": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=%F0%9F%8F%B4%20England%20vs%20Norway%20%E2%9A%BD%20band",
+    "image": null
+  },
+  "\ud83c\udfa4\u2728 After such an amazing first night, we're back with our SECOND OPEN MIC NIGHT at The Fox and Castl": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=%F0%9F%8E%A4%E2%9C%A8%20After%20such%20an%20amazing%20first%20night%2C%20we%27re%20back%20with%20our%20SECOND%20OPEN%20MIC%20NIGHT%20at%20The%20Fox%20and%20Castl%20band",
+    "image": null
+  },
+  "\ud83e\udde0 QUIZ NIGHT TOMORROW": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=%F0%9F%A7%A0%20QUIZ%20NIGHT%20TOMORROW%20band",
+    "image": null
+  },
+  "England vs Norway \u26bd": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=England%20vs%20Norway%20%E2%9A%BD%20band",
+    "image": null
+  },
+  "After such an amazing first night, we're back with our SECOND OPEN MIC NIGHT ...": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=After%20such%20an%20amazing%20first%20night%2C%20we%27re%20back%20with%20our%20SECOND%20OPEN%20MIC%20NIGHT%20...%20band",
+    "image": null
+  },
+  "QUIZ NIGHT TOMORROW": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=QUIZ%20NIGHT%20TOMORROW%20band",
+    "image": null
+  },
+  "SWAN SUPPORT CHARITY BBQ \ud83e\udda2": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=SWAN%20SUPPORT%20CHARITY%20BBQ%20%F0%9F%A6%A2%20band",
+    "image": null
+  },
+  "the incredible Flick": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=the%20incredible%20Flick%20band",
+    "image": null
+  },
+  "the brilliant Flick": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=the%20brilliant%20Flick%20band",
+    "image": null
+  },
+  "Marcy Dawson and Sean O\u2019Keating": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Marcy%20Dawson%20and%20Sean%20O%E2%80%99Keating%20band",
+    "image": null
+  },
+  "It\u2019s set to be a scorcher this weekend so join us on Sat night and feel the Caribbean vibe with cock": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=It%E2%80%99s%20set%20to%20be%20a%20scorcher%20this%20weekend%20so%20join%20us%20on%20Sat%20night%20and%20feel%20the%20Caribbean%20vibe%20with%20cock%20band",
+    "image": null
+  },
+  "This weekend at Windsor\u2019s only Community Pub, it\u2019s England\u2019s final group game live with opening hour": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=This%20weekend%20at%20Windsor%E2%80%99s%20only%20Community%20Pub%2C%20it%E2%80%99s%20England%E2%80%99s%20final%20group%20game%20live%20with%20opening%20hour%20band",
+    "image": null
+  },
+  "@thegreenJuly has come in with a bang at Windsor\u2019s only Community Pub! We\u2019ve lots going on over the": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=%40thegreenJuly%20has%20come%20in%20with%20a%20bang%20at%20Windsor%E2%80%99s%20only%20Community%20Pub%21%20We%E2%80%99ve%20lots%20going%20on%20over%20the%20band",
+    "image": null
+  },
+  "England vs Argentina 2026 World Cup Semi-Final": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=England%20vs%20Argentina%202026%20World%20Cup%20Semi-Final%20band",
+    "image": null
+  },
+  "Karaoke": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Karaoke%20band",
+    "image": null
+  },
+  "Kid's Karaoke": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Kid%27s%20Karaoke%20band",
+    "image": null
+  },
+  "MUSIC QUIZ: So You Think You Know Music?": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=MUSIC%20QUIZ%3A%20So%20You%20Think%20You%20Know%20Music%3F%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_2ece4a07d9b1465db266ed9f289e2835~mv2.jpg/v1/fill/w_1383,h_778,al_c,q_85/d1a436_2ece4a07d9b1465db266ed9f289e2835~mv2.jpg",
+      "width": "1383",
+      "height": "778"
+    }
+  },
+  "Sunday Reset: Mindfulness: A Zen Experience with Andreas": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Sunday%20Reset%3A%20Mindfulness%3A%20A%20Zen%20Experience%20with%20Andreas%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_f8ca070403504c4394ff723b9c1a0e43~mv2.jpg/v1/fill/w_2295,h_1291,al_c,q_90/d1a436_f8ca070403504c4394ff723b9c1a0e43~mv2.jpg",
+      "width": "2295",
+      "height": "1291"
+    }
+  },
+  "Mr Wilson's Funk and Soul Sunday Session": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Mr%20Wilson%27s%20Funk%20and%20Soul%20Sunday%20Session%20band",
+    "image": null
+  },
+  "Whilst she was gone (Independent film)": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Whilst%20she%20was%20gone%20%28Independent%20film%29%20band",
+    "image": null
+  },
+  "Gin and Music": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Gin%20and%20Music%20band",
+    "image": null
+  },
+  "In a change to published plans, this month's Charity Coffee Morning at The Swan is in aid of  The Ba": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=In%20a%20change%20to%20published%20plans%2C%20this%20month%27s%20Charity%20Coffee%20Morning%20at%20The%20Swan%20is%20in%20aid%20of%20%20The%20Ba%20band",
+    "image": null
   }
 }

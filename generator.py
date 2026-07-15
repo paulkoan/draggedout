@@ -8,10 +8,11 @@ Usage:
 """
 
 import csv, json, os, sys, re, urllib.request, urllib.parse, http.server, socketserver
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 from pathlib import Path
 from collections import defaultdict
 from string import Template
+from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
@@ -140,14 +141,359 @@ def scrape_all():
     events = []
     for v in venues:
         slug = v.get("sources",{}).get("lemonrock")
-        if not slug: continue
-        rows = fetch_lr(slug)
-        for r in rows:
-            ev = parse_lr(r, v["name"], v["slug"])
-            if ev: events.append(ev)
-        print(f"  [lr] {v['name']}: {len(rows)}", file=sys.stderr)
+        if slug:
+            rows = fetch_lr(slug)
+            for r in rows:
+                ev = parse_lr(r, v["name"], v["slug"])
+                if ev: events.append(ev)
+            print(f"  [lr] {v['name']}: {len(rows)}", file=sys.stderr)
+
+        web_url = v.get("sources",{}).get("web")
+        if web_url:
+            # Dispatch to the right scraper based on the venue slug
+            vslug = v["slug"]
+            if vslug == "duke-connaught":
+                evs = scrape_duke_connaught(web_url)
+            elif vslug == "swan-clewer":
+                evs = scrape_swan(web_url, v["name"], vslug)
+            elif vslug in ("george-eton", "unit-4"):
+                evs = scrape_webrew(web_url, v["name"], vslug)
+            elif vslug == "other-space-arts":
+                from scrapers.other_space_arts import scrape as scrape_other_space_arts
+                evs = scrape_other_space_arts(web_url)
+            elif vslug == "old-court":
+                from scrapers.old_court import scrape_old_court_music
+                evs = scrape_old_court_music(web_url)
+            elif vslug == "two-flints":
+                from scrapers.two_flints import scrape as scrape_two_flints
+                evs = scrape_two_flints(web_url)
+            elif vslug == "horse-groom":
+                from scrapers.horse_groom import scrape as scrape_horse_groom
+                evs = scrape_horse_groom(web_url)
+            else:
+                print(f"  [web] {v['name']}: no scraper for slug '{vslug}', skipping", file=sys.stderr)
+                evs = []
+            events.extend(evs)
+
+        # Instagram source — scrape music-related posts from venue profile
+        ig_handle = v.get("sources",{}).get("instagram")
+        if ig_handle and v.get("status") != "permanently_closed":
+            from scrapers.instagram import scrape_instagram
+            evs = scrape_instagram(ig_handle, v["name"], v["slug"])
+            events.extend(evs)
+
     events.sort(key=lambda e: e["date"])
     return events, venues
+
+# ═══════════════════════════════════════════════════
+#  WEB SCRAPER — Duke of Connaught (Squarespace)
+# ═══════════════════════════════════════════════════
+
+MONTH_NAMES = ["January","February","March","April","May","June",
+               "July","August","September","October","November","December"]
+
+def scrape_duke_connaught(url):
+    """Scrape gigs from the Duke of Connaught's Squarespace live-music page.
+
+    The page uses per-gig <div class=\"sqs-html-content\"> blocks with:
+      <p class=\"sqsrte-large\"><strong>Sunday 14th June</strong></p>
+      <p><strong>Aaron Norton</strong></p>
+      <p><strong><em>6pm</em></strong></p>
+    Month headings (<h2>June</h2>) appear in separate blocks.
+    """
+    try:
+        resp = urllib.request.urlopen(url, timeout=10)
+        html = resp.read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"  [WARN] duke-connaught: {e}", file=sys.stderr)
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    events = []
+    current_month = None
+    now = datetime.now()
+    current_year = now.year
+
+    for div in soup.find_all("div", class_="sqs-html-content"):
+        # Month heading?
+        h2 = div.find("h2")
+        if h2:
+            text = h2.get_text(strip=True)
+            m = re.match(r'(January|February|March|April|May|June|July|August|September|October|November|December)', text, re.I)
+            if m:
+                current_month = m.group(1).capitalize()
+            continue
+
+        # Gig block?
+        p_date = div.find("p", class_="sqsrte-large")
+        if not p_date:
+            continue
+        date_text = p_date.get_text(strip=True)
+
+        # Match "Sunday 14th June", "Sunday 2nd August", etc.
+        dm = re.match(r'(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\s+(\d+)(st|nd|rd|th)\s+(\w+)', date_text)
+        if not dm:
+            continue
+
+        day_num = int(dm.group(2))
+        month_name = dm.group(4).capitalize()
+
+        if month_name in MONTH_NAMES:
+            month_num = MONTH_NAMES.index(month_name) + 1
+        elif current_month and current_month in MONTH_NAMES:
+            month_num = MONTH_NAMES.index(current_month) + 1
+        else:
+            continue
+
+        # Extract artist + time from remaining <p> tags
+        ps = div.find_all("p")
+        artist = None
+        time_raw = None
+        for p in ps:
+            t = p.get_text(strip=True)
+            if p is p_date or not t:
+                continue
+            if artist is None:
+                artist = t
+            elif time_raw is None:
+                time_raw = t
+
+        if not artist:
+            continue
+
+        # Clean artist name (collapse whitespace, strip junk)
+        artist = re.sub(r'\s+', ' ', artist).strip().rstrip(",")
+
+        # If the text-month conflicts with the heading-month (site typo),
+        # trust the heading when it's the more recent month. This catches
+        # "Sunday 26th April" appearing under a July heading.
+        if (current_month and current_month in MONTH_NAMES
+                and month_name in MONTH_NAMES
+                and month_name != current_month):
+            txt_idx = MONTH_NAMES.index(month_name)
+            hdr_idx = MONTH_NAMES.index(current_month)
+            # Trust heading if text month is 2+ months before the heading
+            if hdr_idx - txt_idx >= 2:
+                month_name = current_month
+                month_num = hdr_idx + 1
+
+        # Parse time like "6pm", "6:30pm"
+        start = ""
+        tm = re.match(r'(\d{1,2})(?::(\d{2}))?\s*(pm|am)', time_raw or "", re.I)
+        if tm:
+            h, m, a = int(tm.group(1)), tm.group(2) or "00", tm.group(3).lower()
+            if a == "pm" and h < 12:
+                h += 12
+            elif a == "am" and h == 12:
+                h = 0
+            start = f"{h:02d}:{m}"
+
+        # Determine year: if the gig month is >= current month, use current year
+        # otherwise use next year (assuming they've posted ahead)
+        year = current_year if month_num >= now.month else current_year + 1
+
+        date_str = f"{year}-{month_num:02d}-{day_num:02d}"
+
+        events.append({
+            "date": date_str,
+            "day_name": dm.group(1),
+            "start": start,
+            "end": "",
+            "artist": artist,
+            "venue": "The Duke of Connaught",
+            "venue_slug": "duke-connaught",
+            "cost": "FREE",
+            "source": "web:duke-connaught",
+            "url": url,
+            "cancelled": False,
+            "repeating": False,
+        })
+
+    print(f"  [web] Duke of Connaught: {len(events)} events", file=sys.stderr)
+    events.sort(key=lambda e: e["date"])
+    return events
+
+
+# ═══════════════════════════════════════════════════
+#  WEB SCRAPER — The Swan, Clewer (GorillaHub)
+# ═══════════════════════════════════════════════════
+
+def scrape_swan(url, vname, vslug):
+    """Scrape events from The Swan's GorillaHub events page.
+
+    The page uses <h3> headings for event titles followed by a date
+    line in the format 'Month Day, Year' inside a <p> tag.
+    """
+    try:
+        resp = urllib.request.urlopen(url, timeout=10)
+        html = resp.read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"  [WARN] swan-clewer: {e}", file=sys.stderr)
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    events = []
+    now = datetime.now()
+    current_year = now.year
+
+    # Find event blocks: <h3> title followed by a date div sibling
+    for h3 in soup.find_all("h3"):
+        title = h3.get_text(strip=True)
+        if not title or title.lower() in ("events", "quick links", "opening hours"):
+            continue
+
+        # Look for the next sibling div/span/p with a date
+        date_str = None
+        description = ""
+        for sib in h3.find_next_siblings():
+            if sib.name == "h3":
+                break
+            if sib.name in ("div", "p", "span"):
+                text = sib.get_text(strip=True)
+                # Try to match "Month Day, Year" or "Month Day"
+                dm = re.match(r'[^\w]*([A-Z][a-z]+)\s+(\d+)(?:st|nd|rd|th)?,?\s*(\d{4})?', text)
+                if dm and not date_str:
+                    month_name = dm.group(1)
+                    day_num = int(dm.group(2))
+                    year = int(dm.group(3)) if dm.group(3) else current_year
+                    if month_name in MONTH_NAMES:
+                        month_num = MONTH_NAMES.index(month_name) + 1
+                        date_str = f"{year}-{month_num:02d}-{day_num:02d}"
+                        continue
+                if not description and text and len(text) > 20:
+                    description = text
+
+        if not date_str:
+            continue
+
+        # Filter to music-related events only
+        music_keywords = [
+            "live music", "live band", "acoustic", "singer", "songwriter",
+            "gig", "dj", "open mic", "karaoke", "jam session",
+            "swanfest", "beer fest", "tribute", "cover band",
+            "rock", "blues", "jazz", "folk", "soul",
+            "christmas in july",  # has live music
+        ]
+        is_music = any(kw in title.lower() for kw in music_keywords)
+        if not is_music:
+            continue
+
+        events.append({
+            "date": date_str,
+            "day_name": datetime.strptime(date_str, "%Y-%m-%d").strftime("%A"),
+            "start": "",
+            "end": "",
+            "artist": title,
+            "venue": vname,
+            "venue_slug": vslug,
+            "cost": "",
+            "source": "web:swan-clewer",
+            "url": url,
+            "cancelled": False,
+            "repeating": "quiz" in title.lower(),
+        })
+
+    print(f"  [web] {vname}: {len(events)} events", file=sys.stderr)
+    events.sort(key=lambda e: e["date"])
+    return events
+
+
+# ═══════════════════════════════════════════════════
+#  WEB SCRAPER — WeBrew events page (The George + Unit 4)
+# ═══════════════════════════════════════════════════
+
+def scrape_webrew(url, vname, vslug):
+    """Scrape events from Windsor & Eton Brewery's The Events Calendar page.
+
+    The page lists <article> elements, each with a heading (event title),
+    time element (date), and optional venue info in the text.
+    Filters to only events matching the given venue name.
+    """
+    try:
+        resp = urllib.request.urlopen(url, timeout=10)
+        html = resp.read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"  [WARN] webrew: {e}", file=sys.stderr)
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    events = []
+    now = datetime.now()
+    current_year = now.year
+
+    # Map venue names in events to our slugs
+    venue_names = {
+        "unit-4": ["unit 4 taproom", "unit 4", "the taproom",
+                    "windsor & eton brewery", "windsor beer festival"],
+        "george-eton": ["the george"],
+    }
+    expected_names = venue_names.get(vslug, [])
+
+    for article in soup.find_all("article"):
+        # Event title from h4 heading
+        h4 = article.find("h4")
+        if not h4:
+            continue
+        a_tag = h4.find("a")
+        title = (a_tag.get_text(strip=True) if a_tag else h4.get_text(strip=True))
+        if not title:
+            continue
+
+        # Skip non-music/event listings (meeting rooms, accommodation, etc.)
+        skip_keywords = ["the boardroom", "the mezzanine", "meeting room",
+                         "accommodation", "brewery tour"]
+        if any(kw in title.lower() for kw in skip_keywords):
+            continue
+
+        # Check venue relevance from article text
+        article_text = article.get_text(" ", strip=True).lower()
+        if not any(n in article_text for n in expected_names):
+            continue
+
+        # Try to extract date from time element
+        date_str = None
+        time_tag = article.find("time")
+        if time_tag and time_tag.get("datetime"):
+            dt_str = time_tag["datetime"]
+            try:
+                dt = datetime.strptime(dt_str[:10], "%Y-%m-%d")
+                date_str = dt_str[:10]
+            except ValueError:
+                pass
+
+        # Fallback: look for date in text (dd.mm.yyyy or similar)
+        if not date_str:
+            dm = re.search(r'(\d{1,2})[./](\d{1,2})[./](\d{4})', article_text)
+            if dm:
+                d, m, y = int(dm.group(1)), int(dm.group(2)), int(dm.group(3))
+                date_str = f"{y}-{m:02d}-{d:02d}"
+
+        if not date_str:
+            continue
+
+        # Extract description
+        desc_p = article.find("p")
+        description = desc_p.get_text(strip=True) if desc_p else ""
+
+        events.append({
+            "date": date_str,
+            "day_name": datetime.strptime(date_str, "%Y-%m-%d").strftime("%A"),
+            "start": "",
+            "end": "",
+            "artist": title,
+            "venue": vname,
+            "venue_slug": vslug,
+            "cost": "FREE" if "free" in article_text else "",
+            "source": "web:webrew",
+            "url": a_tag["href"] if a_tag else url,
+            "cancelled": False,
+            "repeating": False,
+        })
+
+    print(f"  [web] {vname}: {len(events)} events", file=sys.stderr)
+    events.sort(key=lambda e: e["date"])
+    return events
+
 
 # ═══════════════════════════════════════════════════
 #  HELPERS
@@ -265,6 +611,7 @@ HEAD = Template("""<!DOCTYPE html>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="$ogtitle">
 <script type="application/ld+json">$jsonld</script>
+<link rel="alternate" type="application/rss+xml" title="Dragged Out — Local Live Music" href="https://draggedout.cybr.fi/feed.xml">
 <style>$css</style>
 </head>
 <body>
@@ -320,12 +667,19 @@ def event_card(e):
     if e.get("youtube"):
         yt_link = f"<a href='{e['youtube']}' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>"
     
+    # Band name hyperlink — link to the gig/venue page if available, otherwise a Google search
+    band_url = e.get("url") or ""
+    band_url = band_url.strip()
+    if not band_url:
+        band_url = f"https://www.google.com/search?q={urllib.parse.quote(e['artist'] + ' live music Windsor')}"
+    artist_html = f"<a href='{band_url}' target='_blank' rel='noopener noreferrer'>{e['artist']}</a>"
+    
     return f"""<div class="event-card" itemscope itemtype="https://schema.org/Event">
 <script type="application/ld+json">{ld}</script>
 {thumb_html}
 <div class="event-time">{time_fmt}</div>
 <div class="event-body">
-<div class="event-artist">{e['artist']}{cancelled}</div>
+<div class="event-artist">{artist_html}{cancelled}</div>
 {genre_html}
 </div>
 <div class="event-tags">
@@ -375,15 +729,30 @@ def build_index(events, venues):
             + HERO + '<div class="wrapper"><main>\n' + body + "\n</main>\n" + FOOT)
 
 def build_venue_page(venue, events):
-    v_events = [e for e in events if e["venue_slug"] == venue["slug"]]
-    v_events.sort(key=lambda e: e["date"])
-    up = filter_upcoming(v_events, 180)
-    grouped = group_by_date(up)
-    sections = []
-    for ds in sorted(grouped.keys()):
-        sections.append(day_section(ds, grouped[ds]))
     n = venue["name"]
-    body = f"""<main>
+    closed = venue.get("status") == "permanently_closed"
+
+    if closed:
+        body = f"""<main>
+<div class="venue-header">
+<h2>{n}</h2>
+<p class="venue-meta">
+<span style="color:var(--red);font-weight:600">⛔ PERMANENTLY CLOSED</span><br>
+{venue.get("address","")}<br>
+{venue.get("area","").title()}<br>
+{venue.get("notes","").replace(chr(10),"<br>")}
+</p>
+</div>
+</main>"""
+    else:
+        v_events = [e for e in events if e["venue_slug"] == venue["slug"]]
+        v_events.sort(key=lambda e: e["date"])
+        up = filter_upcoming(v_events, 180)
+        grouped = group_by_date(up)
+        sections = []
+        for ds in sorted(grouped.keys()):
+            sections.append(day_section(ds, grouped[ds]))
+        body = f"""<main>
 <div class="venue-header">
 <h2>{n}</h2>
 <p class="venue-meta">
@@ -393,20 +762,34 @@ def build_venue_page(venue, events):
 </div>
 {"".join(sections) if sections else "<p style='color:var(--muted)'>No upcoming gigs.</p>"}
 </main>"""
-    return (HEAD.substitute(title=f"{n} \u2014 Dragged Out",
-                            desc=f"Live music at {n} in {venue.get('area','').title()}",
-                            ogtitle=f"{n} \u2014 Dragged Out",
+    if closed:
+        desc = f"{n} — permanently closed (converted to housing, CAMRA confirmed 2025)"
+    else:
+        desc = f"Live music at {n} in {venue.get('area','').title()}"
+    return (HEAD.substitute(title=f"{n} — Dragged Out",
+                            desc=desc,
+                            ogtitle=f"{n} — Dragged Out",
                             jsonld=json.dumps({"@context":"https://schema.org","@type":"Place","name":n}), css=CSS)
             + HERO + '<div class="wrapper">' + body + FOOT)
 
 def build_venues_index(events, venues):
+    active_venues = [v for v in venues if v.get("status") != "permanently_closed"]
+    closed_venues = [v for v in venues if v.get("status") == "permanently_closed"]
     rows = []
-    for v in venues:
+    for v in active_venues:
         count = len([e for e in events if e["venue_slug"] == v["slug"]])
         rows.append(f"""<div class="event-card">
 <div class="event-body"><div class="event-artist"><a href="/venue/{v['slug']}.html">{v['name']}</a></div></div>
 <span style='font-size:.8rem;color:var(--muted)'>{v.get('area','').title()}</span>
 <span style='font-size:.8rem;color:var(--muted)'>{count} gigs</span>
+</div>""")
+    if closed_venues:
+        rows.append(f"""<div style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border)">
+<p style="font-size:.8rem;color:var(--muted);margin-bottom:.5rem">Permanently closed:</p>""")
+        for v in closed_venues:
+            rows.append(f"""<div class="event-card" style="opacity:.5">
+<div class="event-body"><div class="event-artist">{v['name']}</div></div>
+<span style='font-size:.8rem;color:var(--red)'>{v.get('area','').title()} · Closed</span>
 </div>""")
     body = f"""<main>
 <h2 style='margin-bottom:1rem;font-size:1.2rem'>Venues</h2>
@@ -449,9 +832,56 @@ def build_about():
 def build_sitemap(events, venues):
     urls = ["https://draggedout.cybr.fi/","https://draggedout.cybr.fi/about.html","https://draggedout.cybr.fi/venues/"]
     for v in venues:
-        urls.append(f"https://draggedout.cybr.fi/venue/{v['slug']}.html")
+        if v.get("status") != "permanently_closed":
+            urls.append(f"https://draggedout.cybr.fi/venue/{v['slug']}.html")
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + \
            "\n".join(f"<url><loc>{u}</loc></url>" for u in urls) + "\n</urlset>"
+
+# ═══════════════════════════════════════════════════
+#  RSS FEED
+# ═══════════════════════════════════════════════════
+
+def _xml_escape(s):
+    s = str(s) if s is not None else ""
+    return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;").replace('"',"&quot;").replace("'","&apos;")
+
+def build_feed(events):
+    up = filter_upcoming(events, 90)
+    now = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+    items = []
+    for e in up:
+        title = f"{e['artist']} at {e['venue']}"
+        date_d = datetime.strptime(e["date"], "%Y-%m-%d")
+        pub_date = date_d.strftime("%a, %d %b %Y %H:%M:%S +0000")
+        desc_parts = [f"<p><strong>{_xml_escape(e['artist'])}</strong> at {_xml_escape(e['venue'])}</p>"]
+        if e.get("genre"):
+            desc_parts.append(f"<p>Genre: {_xml_escape(e['genre'])}</p>")
+        if e.get("start"):
+            desc_parts.append(f"<p>Time: {_xml_escape(e['start'])}</p>")
+        if e.get("cost"):
+            desc_parts.append(f"<p>Entry: {_xml_escape(e['cost'])}</p>")
+        if e.get("cancelled"):
+            desc_parts.append("<p><strong>CANCELLED</strong></p>")
+        description = "".join(desc_parts)
+        items.append(f"""  <item>
+    <title>{_xml_escape(title)}</title>
+    <link>https://draggedout.cybr.fi/</link>
+    <guid isPermaLink="false">draggedout-{e['date']}-{_xml_escape(e['artist'])}-{_xml_escape(e['venue'])}</guid>
+    <description><![CDATA[{description}]]></description>
+    <pubDate>{pub_date}</pubDate>
+  </item>""")
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Dragged Out — Local Live Music</title>
+  <link>https://draggedout.cybr.fi/</link>
+  <description>Live music at pubs and breweries in Windsor, Clewer, and Eton</description>
+  <language>en-gb</language>
+  <lastBuildDate>{now}</lastBuildDate>
+  <atom:link href="https://draggedout.cybr.fi/feed.xml" rel="self" type="application/rss+xml"/>
+{chr(10).join(items)}
+</channel>
+</rss>"""
 
 # ═══════════════════════════════════════════════════
 
@@ -477,13 +907,15 @@ def build():
     (SITE / "venues" / "index.html").write_text(build_venues_index(events, venues))
     (SITE / "venue").mkdir(exist_ok=True)
     for v in venues:
-        (SITE / "venue" / f"{v['slug']}.html").write_text(build_venue_page(v, events))
-        print(f"  venue/{v['slug']}.html", file=sys.stderr)
+        if v.get("status") != "permanently_closed":
+            (SITE / "venue" / f"{v['slug']}.html").write_text(build_venue_page(v, events))
+            print(f"  venue/{v['slug']}.html", file=sys.stderr)
     (SITE / "about.html").write_text(build_about()); print("  about.html", file=sys.stderr)
     (SITE / "sitemap.xml").write_text(build_sitemap(events, venues))
+    (SITE / "feed.xml").write_text(build_feed(events))
     (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://draggedout.cybr.fi/sitemap.xml\n")
     (SITE / "CNAME").write_text("draggedout.cybr.fi\n")
-    print("  sitemap, robots, CNAME", file=sys.stderr)
+    print("  sitemap, feed, robots, CNAME", file=sys.stderr)
     print(f"Done. {sum(1 for e in events if e.get('genre'))} events with genre info.", file=sys.stderr)
 
 def build_no_scrape():
@@ -498,6 +930,7 @@ def build_no_scrape():
         (SITE / "venue" / f"{v['slug']}.html").write_text(build_venue_page(v, events))
     (SITE / "about.html").write_text(build_about())
     (SITE / "sitemap.xml").write_text(build_sitemap(events, venues))
+    (SITE / "feed.xml").write_text(build_feed(events))
     (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://draggedout.cybr.fi/sitemap.xml\n")
     (SITE / "CNAME").write_text("draggedout.cybr.fi\n")
 

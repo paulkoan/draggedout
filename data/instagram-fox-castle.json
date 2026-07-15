@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2026-09-18",
+    "day_name": "Friday",
+    "start": "20:00",
+    "end": "",
+    "artist": "the brilliant Flick",
+    "venue": "The Fox & Castle",
+    "venue_slug": "fox-castle",
+    "cost": "",
+    "source": "instagram:fox-castle",
+    "url": "https://www.instagram.com/thefoxandcastle/p/DOGoZtljMRT/",
+    "cancelled": false,
+    "repeating": true,
+    "_music_focus": true
+  },
+  {
+    "date": "2026-07-31",
+    "day_name": "Friday",
+    "start": "20:00",
+    "end": "",
+    "artist": "the incredible Flick",
+    "venue": "The Fox & Castle",
+    "venue_slug": "fox-castle",
+    "cost": "",
+    "source": "instagram:fox-castle",
+    "url": "https://www.instagram.com/thefoxandcastle/p/DMsG3Q1Ihhg/",
+    "cancelled": false,
+    "repeating": true,
+    "_music_focus": true
+  },
+  {
+    "date": "2026-07-27",
+    "day_name": "Monday",
+    "start": "14:00",
+    "end": "",
+    "artist": "SWAN SUPPORT CHARITY BBQ 🦢",
+    "venue": "The Fox & Castle",
+    "venue_slug": "fox-castle",
+    "cost": "",
+    "source": "instagram:fox-castle",
+    "url": "https://www.instagram.com/thefoxandcastle/p/C9DYa0yoq8Y/",
+    "cancelled": false,
+    "repeating": false,
+    "_music_focus": true
+  },
+  {
+    "date": "2027-03-17",
+    "day_name": "Wednesday",
+    "start": "19:30",
+    "end": "",
+    "artist": "Marcy Dawson and Sean O’Keating",
+    "venue": "The Fox & Castle",
+    "venue_slug": "fox-castle",
+    "cost": "",
+    "source": "instagram:fox-castle",
+    "url": "https://www.instagram.com/thefoxandcastle/p/C4eBE_tLLNL/",
+    "cancelled": false,
+    "repeating": false,
+    "_music_focus": true
+  }
+]
