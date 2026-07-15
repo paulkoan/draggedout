@@ -26,6 +26,20 @@ export GIT_SSH_COMMAND="ssh -F /dev/null -i deploy_key"
 
 git -C . add -A
 git -C . commit -m "deploy: site update $(date +%Y-%m-%d)" || echo "[git] No changes"
-git -C . push git@github.com:paulkoan/draggedout.git main
+git push git@github.com:paulkoan/draggedout.git main
+
+# ── Deploy to gh-pages (GitHub Pages) ──
+echo "[deploy] Updating gh-pages branch..."
+cd "$(dirname "$0")"
+export GIT_SSH_COMMAND="ssh -F /dev/null -i $PWD/deploy_key"
+git fetch origin gh-pages
+git worktree add /tmp/draggedout-gh-pages gh-pages 2>/dev/null || git worktree add /tmp/draggedout-gh-pages origin/gh-pages
+cp -r build/* /tmp/draggedout-gh-pages/
+cd /tmp/draggedout-gh-pages
+git add -A
+git commit -m "Dragged Out update $(date +%Y-%m-%d\ %H:%M) UTC" || echo "[deploy] No changes"
+git push origin gh-pages
+cd "$(dirname "$0")"
+git worktree remove /tmp/draggedout-gh-pages 2>/dev/null
 
 echo "=== Done ==="

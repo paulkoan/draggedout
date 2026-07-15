@@ -182,6 +182,19 @@ def scrape_page(url: str) -> list[dict]:
         ribbon_el = card.select_one('[data-hook="ribbon"]')
         is_recurring = bool(ribbon_el and "Multiple Dates" in ribbon_el.get_text())
 
+        # Filter to music-related events only
+        music_keywords = [
+            "open mic", "music", "guitar", "acoustic", "gig", "live",
+            "dj", "decks", "vinyl", "metal", "punk", "rock",
+            "karaoke", "band", "singer", "songwriter",
+            "night of the guitar", "music & words", "music quiz",
+        ]
+        is_music = any(kw in title.lower() for kw in music_keywords)
+        if not is_music and description:
+            is_music = any(kw in description.lower() for kw in music_keywords)
+        if not is_music:
+            continue
+
         events.append({
             "date": date_str,
             "day_name": day_name,
