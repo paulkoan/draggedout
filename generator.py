@@ -372,7 +372,6 @@ def scrape_swan(url, vname, vslug):
             "gig", "dj", "open mic", "karaoke", "jam session",
             "swanfest", "beer fest", "tribute", "cover band",
             "rock", "blues", "jazz", "folk", "soul",
-            "christmas in july",  # has live music
         ]
         is_music = any(kw in title.lower() for kw in music_keywords)
         if not is_music:
