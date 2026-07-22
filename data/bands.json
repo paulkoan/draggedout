@@ -793,5 +793,40 @@
     "genre": null,
     "youtube": "https://www.youtube.com/results?search_query=In%20a%20change%20to%20published%20plans%2C%20this%20month%27s%20Charity%20Coffee%20Morning%20at%20The%20Swan%20is%20in%20aid%20of%20%20The%20Ba%20band",
     "image": null
+  },
+  "Thanks to everyone for a great week at The George.": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Thanks%20to%20everyone%20for%20a%20great%20week%20at%20The%20George.%20band",
+    "image": null
+  },
+  "\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f Celebrating St George's Day!": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=%F3%A0%81%A7%F3%A0%81%A2%F3%A0%81%A5%F3%A0%81%AE%F3%A0%81%A7%F3%A0%81%BF%20Celebrating%20St%20George%27s%20Day%21%20band",
+    "image": null
+  },
+  "Our lovely winners from this week\u2019s quiz!\ud83d\ude01": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Our%20lovely%20winners%20from%20this%20week%E2%80%99s%20quiz%21%F0%9F%98%81%20band",
+    "image": null
+  },
+  "Gabriel Moreno - Leonard Cohen Special": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Gabriel%20Moreno%20-%20Leonard%20Cohen%20Special%20band",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://static.wixstatic.com/media/d1a436_8b092213a24d450fac76a3cacabd04c3~mv2.jpg/v1/fill/w_2160,h_1215,al_c,q_90/d1a436_8b092213a24d450fac76a3cacabd04c3~mv2.jpg",
+      "width": "2160",
+      "height": "1215"
+    }
+  },
+  "Karen Singing Soul": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Karen%20Singing%20Soul%20band",
+    "image": null
+  },
+  "Spinoff": {
+    "genre": null,
+    "youtube": "https://www.youtube.com/results?search_query=Spinoff%20band",
+    "image": null
   }
 }

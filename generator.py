@@ -699,6 +699,15 @@ def day_section(date_str, events):
 {cards}
 </section>"""
 
+def empty_day_section(date_str):
+    d = datetime.strptime(date_str, "%Y-%m-%d")
+    short = DSHORT.get(d.strftime("%A"), d.strftime("%A")[:3])
+    label = f"{short} {d.day} {MONTHS[d.month-1]} {d.year}"
+    return f"""<section class="day-section">
+<h2 class="day-heading">{label}</h2>
+<p style="color:var(--muted);font-size:.85rem;padding:.4rem .85rem">No live music events.</p>
+</section>"""
+
 # ── Page builders ──
 
 def build_index(events, venues):
@@ -706,20 +715,16 @@ def build_index(events, venues):
     grouped = group_by_date(up)
     today = date.today()
     sections = []
-    shown = set()
-    days_until_thu = (3 - today.weekday()) % 7
-    start = today + timedelta(days=days_until_thu)
+    # Start from the most recent Monday
+    start = today - timedelta(days=today.weekday())  # Monday=0
     for wo in range(5):
-        for d in range(4):
+        for d in range(7):  # Mon-Sun
             dt = start + timedelta(weeks=wo, days=d)
             ds = dt.strftime("%Y-%m-%d")
-            if ds in grouped and ds not in shown:
+            if ds in grouped:
                 sections.append(day_section(ds, grouped[ds]))
-                shown.add(ds)
-    for ds in sorted(grouped.keys()):
-        if ds not in shown:
-            sections.append(day_section(ds, grouped[ds]))
-            shown.add(ds)
+            else:
+                sections.append(empty_day_section(ds))
     body = "\n".join(sections)
     return (HEAD.substitute(title="Dragged Out \u2014 Live Music in Windsor & Eton",
                             desc="Pubs and breweries with live music in Windsor, Clewer, and Eton.",
@@ -810,7 +815,7 @@ def build_about():
 <ul>
 <li>Data is scraped weekly from Lemonrock, venue websites, and Instagram</li>
 <li>Every Wednesday the site regenerates with the latest listings</li>
-<li>Music runs Thursday through Sunday</li>
+<li>Where there are no live music events on a given day, we call it out</li>
 <li>Most gigs are free entry</li>
 </ul>
 <h2>Coverage</h2>
