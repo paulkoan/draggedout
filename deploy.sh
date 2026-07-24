@@ -38,7 +38,7 @@ cp -r build/* /tmp/draggedout-gh-pages/
 cd /tmp/draggedout-gh-pages
 git add -A
 git commit -m "Dragged Out update $(date +%Y-%m-%d\ %H:%M) UTC" || echo "[deploy] No changes"
-git push origin gh-pages
+git push -f origin gh-pages
 cd "$(dirname "$0")"
 git worktree remove /tmp/draggedout-gh-pages 2>/dev/null
 
