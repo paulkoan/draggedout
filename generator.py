@@ -715,16 +715,14 @@ def build_index(events, venues):
     grouped = group_by_date(up)
     today = date.today()
     sections = []
-    # Start from the most recent Monday
-    start = today - timedelta(days=today.weekday())  # Monday=0
-    for wo in range(5):
-        for d in range(7):  # Mon-Sun
-            dt = start + timedelta(weeks=wo, days=d)
-            ds = dt.strftime("%Y-%m-%d")
-            if ds in grouped:
-                sections.append(day_section(ds, grouped[ds]))
-            else:
-                sections.append(empty_day_section(ds))
+    # Show exactly 7 days starting from today (today + next 6 days)
+    for d in range(7):
+        dt = today + timedelta(days=d)
+        ds = dt.strftime("%Y-%m-%d")
+        if ds in grouped:
+            sections.append(day_section(ds, grouped[ds]))
+        else:
+            sections.append(empty_day_section(ds))
     body = "\n".join(sections)
     return (HEAD.substitute(title="Dragged Out \u2014 Live Music in Windsor & Eton",
                             desc="Pubs and breweries with live music in Windsor, Clewer, and Eton.",
