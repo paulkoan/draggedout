@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Old Court — Dragged Out</title>
+<meta name="description" content="Live music at The Old Court in Windsor">
+<meta name="keywords" content="live music,Windsor,Eton,Clewer,pubs,breweries,gig guide">
+<meta property="og:title" content="The Old Court — Dragged Out">
+<meta property="og:description" content="Live music at The Old Court in Windsor">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://draggedout.cybr.fi/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Old Court — Dragged Out">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Place", "name": "The Old Court"}</script>
+<link rel="alternate" type="application/rss+xml" title="Dragged Out — Local Live Music" href="https://draggedout.cybr.fi/feed.xml">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d1117;--fg:#e6edf3;--card:#161b22;--card-hover:#1c2333;--border:#30363d;--accent:#58a6ff;--green:#3fb950;--amber:#d29922;--red:#f85149;--muted:#8b949e;--warm:#b8860b;--hero-bg:#1a0e0a;--font:'Segoe UI',Helvetica,Arial,sans-serif}
+html{font-family:var(--font);font-size:16px;color:var(--fg);background:var(--bg)}
+body{min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Hero ── */
+.event-card .event-thumb{width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;border:1px solid var(--border)}
+.event-card .event-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.event-card .event-thumb:hover{border-color:var(--accent)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#0d0806 0%,#1a0e0a 30%,#2a1a0e 50%,#1a0e0a 70%,#0d0806 100%);min-height:260px;display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 35% at 50% 25%,rgba(180,130,30,.10) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 25% 70%,rgba(120,80,20,.06) 0%,transparent 50%),radial-gradient(ellipse 35% 25% at 75% 65%,rgba(100,60,15,.05) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(0deg,rgba(13,8,6,.3) 0%,transparent 100%);pointer-events:none}
+.hero-amber{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,40,.06) 0%,transparent 60%);pointer-events:none}
+.hero-amber:nth-child(1){top:5%;left:30%}
+.hero-amber:nth-child(2){bottom:15%;right:20%;width:300px;height:300px;background:radial-gradient(circle,rgba(180,130,30,.04) 0%,transparent 50%)}
+ /* Content on top */
+.hero-content{position:relative;z-index:1;text-align:center;max-width:650px}
+.hero-content h1{font-size:2.8rem;font-weight:800;letter-spacing:-.03em;color:#e6edf3;text-shadow:0 2px 20px rgba(0,0,0,.5);margin-bottom:.3rem}
+.hero-content .tagline{font-size:1rem;color:var(--muted);margin-bottom:2rem}
+.hero-content p{font-size:.9rem;color:var(--muted);max-width:500px;margin:0 auto}
+
+/* ── Main content ── */
+.wrapper{max-width:900px;margin:0 auto;padding:1.5rem 1.5rem 0;width:100%;flex:1}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+a:hover{border-bottom-color:var(--accent)}
+nav{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-size:.95rem}
+nav a{color:var(--muted);border:0}
+nav a:hover{color:var(--fg);border:0}
+
+/* ── Day sections ── */
+.day-section{margin-bottom:2rem}
+.day-heading{font-size:1rem;font-weight:600;color:var(--accent);padding-bottom:.35rem;margin-bottom:.75rem;border-bottom:1px solid var(--border)}
+
+/* ── Event cards ── */
+.event-card{display:flex;align-items:center;gap:.65rem;padding:.6rem .85rem;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:.4rem;transition:background .1s,border-color .15s}
+.event-card:hover{background:var(--card-hover);border-color:var(--accent)}
+.event-time{font-size:.82rem;font-weight:600;min-width:3.5rem;text-align:center;padding:.2rem .4rem;background:rgba(255,255,255,.04);border-radius:4px;white-space:nowrap}
+.event-body{flex:1;display:flex;flex-direction:column}
+.event-artist{font-weight:500;font-size:.95rem}
+.event-genre{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+.event-tags{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.event-venue-tag{font-size:.78rem;color:var(--muted);padding:.12rem .4rem;background:rgba(88,166,255,.08);border-radius:4px;white-space:nowrap}
+.cost-free{color:var(--green);font-size:.78rem;font-weight:600;white-space:nowrap}
+.cost-other{color:var(--amber);font-size:.78rem;white-space:nowrap}
+.cancelled{color:var(--red);font-weight:600;margin-left:.4rem}
+
+/* ── Venue page ── */
+.venue-header{margin-bottom:2rem}
+.venue-header h2{font-size:1.5rem;margin-bottom:.25rem}
+.venue-meta{color:var(--muted);font-size:.85rem;line-height:1.6}
+.venue-meta a{font-size:.85rem}
+
+/* ── About ── */
+.about-section{line-height:1.7;max-width:65ch}
+.about-section h2{font-size:1.2rem;color:var(--accent);margin:1.5rem 0 .5rem}
+.about-section ul{list-style:none;padding:0}
+.about-section li{padding:.35rem 0;padding-left:1.2rem;position:relative}
+.about-section li::before{content:"→";position:absolute;left:0;color:var(--muted)}
+.about-section p{margin:.75rem 0}
+
+/* ── Footer ── */
+.footer{margin-top:2rem;padding:1.5rem 0;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+@media(max-width:600px){
+.hero{min-height:240px;padding:2rem 1rem}
+.hero-content h1{font-size:2rem}
+.wrapper{padding:1rem 1rem 0}
+.event-card{flex-wrap:wrap;gap:.4rem}
+.event-time{min-width:2.8rem}
+.event-body{flex:1 1 100%;order:-1}
+.event-tags{width:100%}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-amber"></div>
+<div class="hero-amber"></div>
+<div class="hero-content">
+<h1>Dragged Out</h1>
+<p class="tagline">Local live music &mdash; because you didn&rsquo;t want to go out but went anyway</p>
+<nav><a href="/">Calendar</a><a href="/about.html">About</a><a href="/venues/">Venues</a></nav>
+</div>
+</header><div class="wrapper"><main>
+<div class="venue-header">
+<h2>The Old Court</h2>
+<p class="venue-meta">
+St Leonard's Road, Windsor SL4 3BL<br>
+Windsor &middot; 21 gigs listed &middot; <a href="https://oldcourt.org.uk">Website</a> &middot; <a href="https://instagram.com/oldcourtwin">Instagram</a>
+</p>
+</div>
+<section class="day-section">
+<h2 class="day-heading">Wed 9 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Open Mic with Omari at The Old Court", "startDate": "2026-09-09", "endDate": "2026-09-09", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Open Mic with Omari"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:00"}</script>
+
+<div class="event-time">20:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11209' target='_blank' rel='noopener noreferrer'>Open Mic with Omari</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Open%20Mic%20with%20Omari%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 12 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Release Radio Reunion Party-reserve your free ticket now! at The Old Court", "startDate": "2026-09-12", "endDate": "2026-09-12", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Release Radio Reunion Party-reserve your free ticket now!"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "14:00"}</script>
+
+<div class="event-time">14:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11156' target='_blank' rel='noopener noreferrer'>Release Radio Reunion Party-reserve your free ticket now!</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Release%20Radio%20Reunion%20Party-reserve%20your%20free%20ticket%20now%21%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Wed 16 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Open Mic with Omari at The Old Court", "startDate": "2026-09-16", "endDate": "2026-09-16", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Open Mic with Omari"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:00"}</script>
+
+<div class="event-time">20:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11209' target='_blank' rel='noopener noreferrer'>Open Mic with Omari</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Open%20Mic%20with%20Omari%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Tuner (The Old Courters) at The Old Court", "startDate": "2026-09-16", "endDate": "2026-09-16", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Tuner (The Old Courters)"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "15:00"}</script>
+
+<div class="event-time">15:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11533' target='_blank' rel='noopener noreferrer'>Tuner (The Old Courters)</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Tuner%20%28The%20Old%20Courters%29%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 17 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Tuner at The Old Court", "startDate": "2026-09-17", "endDate": "2026-09-17", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Tuner"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "19:00"}</script>
+
+<div class="event-time">19:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11933' target='_blank' rel='noopener noreferrer'>Tuner</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Tuner%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sun 20 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "The Rag & Moan Men Live in the Bar at The Old Court", "startDate": "2026-09-20", "endDate": "2026-09-20", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "The Rag & Moan Men Live in the Bar"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "15:00"}</script>
+
+<div class="event-time">15:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/12048' target='_blank' rel='noopener noreferrer'>The Rag & Moan Men Live in the Bar</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=The%20Rag%20%26%20Moan%20Men%20Live%20in%20the%20Bar%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Kate Strasdin: Dressing The Queen: Two Hundred Years of Makers and Monarchy at The Old Court", "startDate": "2026-09-20", "endDate": "2026-09-20", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Kate Strasdin: Dressing The Queen: Two Hundred Years of Makers and Monarchy"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "17:00"}</script>
+
+<div class="event-time">17:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/12078' target='_blank' rel='noopener noreferrer'>Kate Strasdin: Dressing The Queen: Two Hundred Years of Makers and Monarchy</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Kate%20Strasdin%3A%20Dressing%20The%20Queen%3A%20Two%20Hundred%20Years%20of%20Makers%20and%20Monarchy%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Tue 22 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Jazz Sabbath with 2026 Grammy Award Winner Adam Wakeman at The Old Court", "startDate": "2026-09-22", "endDate": "2026-09-22", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Jazz Sabbath with 2026 Grammy Award Winner Adam Wakeman"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:00"}</script>
+
+<div class="event-time">20:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/6850' target='_blank' rel='noopener noreferrer'>Jazz Sabbath with 2026 Grammy Award Winner Adam Wakeman</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Jazz%20Sabbath%20with%202026%20Grammy%20Award%20Winner%20Adam%20Wakeman%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Wed 23 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Open Mic with Omari at The Old Court", "startDate": "2026-09-23", "endDate": "2026-09-23", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Open Mic with Omari"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:00"}</script>
+
+<div class="event-time">20:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11209' target='_blank' rel='noopener noreferrer'>Open Mic with Omari</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Open%20Mic%20with%20Omari%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 25 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "An Evening of Flanders and Swann: A Tribute by Stefan Bednarczyk at The Old Court", "startDate": "2026-09-25", "endDate": "2026-09-25", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "An Evening of Flanders and Swann: A Tribute by Stefan Bednarczyk"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "19:30"}</script>
+
+<div class="event-time">19:30</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/10702' target='_blank' rel='noopener noreferrer'>An Evening of Flanders and Swann: A Tribute by Stefan Bednarczyk</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=An%20Evening%20of%20Flanders%20and%20Swann%3A%20A%20Tribute%20by%20Stefan%20Bednarczyk%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 26 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Dez Eze Rock Jazz Night at The Old Court", "startDate": "2026-09-26", "endDate": "2026-09-26", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Dez Eze Rock Jazz Night"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:00"}</script>
+
+<div class="event-time">20:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11478' target='_blank' rel='noopener noreferrer'>Dez Eze Rock Jazz Night</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Dez%20Eze%20Rock%20Jazz%20Night%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Wed 30 Sep 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Open Mic with Omari at The Old Court", "startDate": "2026-09-30", "endDate": "2026-09-30", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Open Mic with Omari"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:00"}</script>
+
+<div class="event-time">20:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11209' target='_blank' rel='noopener noreferrer'>Open Mic with Omari</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Open%20Mic%20with%20Omari%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 2 Oct 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "MoonAge - Bowie Tribute at The Old Court", "startDate": "2026-10-02", "endDate": "2026-10-02", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "MoonAge - Bowie Tribute"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "21:00"}</script>
+
+<div class="event-time">21:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/10809' target='_blank' rel='noopener noreferrer'>MoonAge - Bowie Tribute</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=MoonAge%20-%20Bowie%20Tribute%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Wed 7 Oct 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Open Mic with Omari at The Old Court", "startDate": "2026-10-07", "endDate": "2026-10-07", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Open Mic with Omari"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:00"}</script>
+
+<div class="event-time">20:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11209' target='_blank' rel='noopener noreferrer'>Open Mic with Omari</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Open%20Mic%20with%20Omari%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 9 Oct 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Curiosa - Cure Tribute Band at The Old Court", "startDate": "2026-10-09", "endDate": "2026-10-09", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Curiosa - Cure Tribute Band"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "20:30"}</script>
+
+<div class="event-time">20:30</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11559' target='_blank' rel='noopener noreferrer'>Curiosa - Cure Tribute Band</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Curiosa%20-%20Cure%20Tribute%20Band%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sun 11 Oct 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Iain Sparks live in the bar at The Old Court", "startDate": "2026-10-11", "endDate": "2026-10-11", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Iain Sparks live in the bar"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "15:00"}</script>
+
+<div class="event-time">15:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11930' target='_blank' rel='noopener noreferrer'>Iain Sparks live in the bar</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Iain%20Sparks%20live%20in%20the%20bar%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Sat 31 Oct 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Rocky Horror Night at The Old Court", "startDate": "2026-10-31", "endDate": "2026-10-31", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Rocky Horror Night"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "17:00"}</script>
+
+<div class="event-time">17:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/6833' target='_blank' rel='noopener noreferrer'>Rocky Horror Night</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Rocky%20Horror%20Night%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Wed 11 Nov 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Open Mic with Omari set up at The Old Court", "startDate": "2026-11-11", "endDate": "2026-11-11", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Open Mic with Omari set up"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "17:00"}</script>
+
+<div class="event-time">17:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11236' target='_blank' rel='noopener noreferrer'>Open Mic with Omari set up</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Open%20Mic%20with%20Omari%20set%20up%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Wed 25 Nov 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Backrooms (The Old Courters) at The Old Court", "startDate": "2026-11-25", "endDate": "2026-11-25", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Backrooms (The Old Courters)"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "15:00"}</script>
+
+<div class="event-time">15:00</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11543' target='_blank' rel='noopener noreferrer'>Backrooms (The Old Courters)</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Backrooms%20%28The%20Old%20Courters%29%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Thu 26 Nov 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "Backrooms at The Old Court", "startDate": "2026-11-26", "endDate": "2026-11-26", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "Backrooms"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "19:30"}</script>
+
+<div class="event-time">19:30</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/11944' target='_blank' rel='noopener noreferrer'>Backrooms</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=Backrooms%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section><section class="day-section">
+<h2 class="day-heading">Fri 27 Nov 2026</h2>
+<div class="event-card" itemscope itemtype="https://schema.org/Event">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "AK-47 Live in the Firestation Bar at The Old Court", "startDate": "2026-11-27", "endDate": "2026-11-27", "location": {"@type": "Place", "name": "The Old Court", "address": ""}, "performer": {"@type": "Person", "name": "AK-47 Live in the Firestation Bar"}, "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "startTime": "19:30"}</script>
+
+<div class="event-time">19:30</div>
+<div class="event-body">
+<div class="event-artist"><a href='https://oldcourt.org.uk/event/10397' target='_blank' rel='noopener noreferrer'>AK-47 Live in the Firestation Bar</a></div>
+
+</div>
+<div class="event-tags">
+<span class='event-venue-tag'>The Old Court</span>
+<span class='cost-other'>?</span>
+<a href='https://www.youtube.com/results?search_query=AK-47%20Live%20in%20the%20Firestation%20Bar%20band' target='_blank' rel='noopener' style='font-size:.75rem;color:var(--muted)'>▶</a>
+</div>
+</div>
+</section>
+</main><div class="wrapper">
+<footer class="footer">
+<span>Data from Lemonrock, venue websites &amp; Instagram. Updated weekly.</span>
+<span><a href="https://github.com/paulkoan/dragged-out">GitHub</a></span>
+</footer></div></body></html>
